@@ -1,0 +1,1012 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MA111 Study Hub</title>
+<style>
+:root{
+ --bg:#161513;--card:#201e19;--ink:#efe9df;--sub:#a39c8e;
+ --accent:#96594a;--accent2:#2e5f4e;
+ --line:#39342b;--warn-bg:#221d18;--warn-line:#96594a;--good:#3f7c62;--bad:#a56656;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;line-height:1.55;min-height:100%;}
+.wrap{max-width:780px;margin:0 auto;padding:2.2rem 1.2rem 4rem;}
+h1{font-size:1.7rem;margin:0 0 0.15rem;}
+.tag{color:var(--sub);font-size:0.95rem;margin-bottom:1.6rem;font-style:italic;}
+.sans{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+nav{display:flex;flex-wrap:wrap;gap:0.4rem 0.8rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0.8rem 0;margin-bottom:1.8rem;font-size:0.85rem;}
+nav a{color:var(--accent2);text-decoration:none;}
+nav a:hover{text-decoration:underline;}
+.rule-box{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:8px;padding:0.9rem 1.1rem;margin-bottom:2rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.92rem;}
+.rule-box strong{color:var(--warn-line);}
+section{margin-bottom:2.4rem;scroll-margin-top:1rem;}
+h2{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:1.15rem;color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:0.3rem;margin-bottom:0.9rem;}
+h3{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:0.98rem;color:var(--accent2);margin:1.1rem 0 0.4rem;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0.9rem 1.1rem;margin-bottom:0.8rem;}
+.card p{margin:0.45rem 0;}
+.formula{font-size:1.05rem;margin:0.5rem 0;}
+ul,ol{margin:0.3rem 0;padding-left:1.3rem;}
+li{margin-bottom:0.35rem;}
+.small{font-size:0.88rem;color:var(--sub);}
+table{width:100%;border-collapse:collapse;font-size:0.88rem;margin:0.5rem 0;}
+th,td{border:1px solid var(--line);padding:0.35rem 0.5rem;text-align:center;vertical-align:middle;}
+th{background:var(--warn-bg);font-family:-apple-system,sans-serif;font-size:0.78rem;}
+.allowed{color:var(--good);font-weight:bold;}
+.banned{color:var(--bad);font-weight:bold;}
+.overflow-x{overflow-x:auto;}
+/* Math notation */
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 0.2em;line-height:1.2;font-size:0.95em;}
+.frac .num{padding:0 0.25em 0.1em;border-bottom:1px solid currentColor;}
+.frac .den{padding:0.1em 0.25em 0;}
+.lim{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.05;margin-right:0.3em;}
+.limu{font-size:0.72em;white-space:nowrap;}
+.rad{white-space:nowrap;}
+.radic{border-top:1px solid currentColor;padding:0 0.1em;margin-left:0.03em;}
+/* Hero / home */
+.hero{text-align:center;padding:2.2rem 0 1.4rem;}
+.hero .word{font-size:3.4rem;font-weight:700;letter-spacing:0.04em;margin:0;color:var(--accent);}
+.hero .sub{color:var(--sub);font-family:-apple-system,sans-serif;font-size:1rem;margin-top:0.4rem;}
+.home-btn{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.1rem 1.3rem;margin-bottom:0.9rem;cursor:pointer;font-family:-apple-system,sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);transition:border-color .15s;}
+.home-btn:hover{border-color:var(--accent);}
+.home-btn .desc{display:block;font-weight:400;font-size:0.85rem;color:var(--sub);margin-top:0.25rem;}
+.home-btn.disabled{opacity:0.4;cursor:default;}
+.home-btn.disabled:hover{border-color:var(--line);}
+.backbtn{background:none;border:1px solid var(--line);border-radius:8px;padding:0.4rem 0.8rem;font-family:-apple-system,sans-serif;font-size:0.85rem;color:var(--sub);cursor:pointer;margin-bottom:1.2rem;}
+.backbtn:hover{border-color:var(--accent2);color:var(--accent2);}
+/* Quiz */
+.chip{display:inline-block;font-family:-apple-system,sans-serif;font-size:0.75rem;padding:0.2rem 0.6rem;border-radius:6px;border:1px solid var(--line);margin:0.1rem;cursor:pointer;user-select:none;}
+.chip.on{background:var(--accent2);color:#efe9df;border-color:var(--accent2);}
+.diffbadge{font-family:-apple-system,sans-serif;font-size:0.7rem;padding:0.1rem 0.5rem;border-radius:6px;font-weight:600;}
+.d-easy{background:#25352a;color:#8fbf9f;}
+.d-medium{background:#332c1c;color:#d1b06a;}
+.d-hard{background:#32241a;color:#cf8f6a;}
+.d-veryhard{background:#331e1c;color:#cf8484;}
+.navgrid{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1.1rem;}
+.navbtn{width:2.2rem;height:2.2rem;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--sub);font-family:-apple-system,sans-serif;font-size:0.8rem;cursor:pointer;padding:0;}
+.navbtn:hover{border-color:var(--accent2);}
+.navbtn.sel{background:#2a2822;color:var(--ink);border-color:var(--sub);}
+.navbtn.ok{border-color:var(--good);color:var(--good);}
+.navbtn.no{border-color:var(--bad);color:var(--bad);}
+.navbtn.cur{outline:2px solid var(--accent);outline-offset:1px;color:var(--ink);}
+.qtext{font-size:1.12rem;margin:0.4rem 0 1rem;line-height:1.8;}
+.qopt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:0.6rem 0.9rem;margin-bottom:0.5rem;cursor:pointer;font-family:-apple-system,sans-serif;font-size:0.95rem;color:var(--ink);}
+.qopt:hover{border-color:var(--accent2);}
+.qopt.picked{border-color:var(--accent2);background:#1d2a24;}
+.qopt.correct{border-color:var(--good);background:#1d2a24;}
+.qopt.wrong{border-color:var(--bad);background:#2a1f1b;}
+.qopt.locked{cursor:default;}
+.btnrow{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;}
+.primarybtn{background:var(--accent2);color:#efe9df;border:none;border-radius:8px;padding:0.6rem 1.2rem;font-family:-apple-system,sans-serif;font-size:0.95rem;cursor:pointer;font-weight:700;}
+.primarybtn:hover{opacity:0.88;}
+.secbtn{background:none;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:0.6rem 1.1rem;font-family:-apple-system,sans-serif;font-size:0.95rem;cursor:pointer;}
+.secbtn:hover{border-color:var(--accent2);}
+button[disabled]{opacity:0.4;cursor:default;pointer-events:none;}
+.quizcta{display:block;width:100%;text-align:center;background:var(--accent2);color:#efe9df;border:1px solid var(--line);border-radius:10px;padding:1.1rem;font-family:-apple-system,sans-serif;font-size:1.05rem;font-weight:700;cursor:pointer;margin-top:1rem;}
+.quizcta:hover{opacity:0.9;}
+.revq{border-left:3px solid var(--line);}
+.revq.ok{border-left-color:var(--good);}
+.revq.no{border-left-color:var(--bad);}
+.revhead{font-family:-apple-system,sans-serif;font-size:0.78rem;color:var(--sub);margin-bottom:0.3rem;}
+.ans{font-family:-apple-system,sans-serif;font-size:0.9rem;margin:0.25rem 0;}
+.ans.good{color:var(--good);}
+.ans.bad{color:var(--bad);}
+.hidden{display:none;}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+/* ---------- Notation helpers ---------- */
+function F(n,d){return '<span class="frac"><span class="num">'+n+'</span><span class="den">'+d+'</span></span>';}
+function LIM(sub){return '<span class="lim"><span class="limw">lim</span><span class="limu">'+sub+'</span></span>';}
+function LM(sub,body,res){return LIM(sub)+' '+body+(res!==undefined?' = '+res:'');}
+function R(x){return '<span class="rad">√<span class="radic">'+x+'</span></span>';}
+
+const state = { view:'home', exam:1, quizQuestions:[], quizIdx:0, selectedTopics:new Set(), selectedDiffs:new Set(['easy','medium','hard','veryhard']) };
+
+const TOPICS = ['Functions','Logs','Trig','Limits','Continuity','IVT','Epsilon-Delta','Derivatives'];
+state.selectedTopics = new Set(TOPICS);
+
+const DIFF_LABEL = {easy:'Easy',medium:'Medium',hard:'Hard',veryhard:'Very Hard'};
+
+/* ---------- Quiz bank (all text is HTML) ---------- */
+const QUIZ_BANK = [
+ /* Functions */
+ {topic:'Functions',diff:'easy',q:'What is the range of f(x) = e<sup>x</sup>?',opts:['(−∞, ∞)','(0, ∞)','[0, ∞)','(−∞, 0)'],correct:1,
+  exp:'e<sup>x</sup> is always positive and gets arbitrarily close to 0, so the range is (0, ∞).'},
+ {topic:'Functions',diff:'medium',q:'A function is invertible on its whole domain if it is…',opts:['Continuous','One-to-one (passes the horizontal line test)','Increasing only','Defined everywhere'],correct:1,
+  exp:'Invertibility requires one-to-one: each output comes from exactly one input.'},
+ {topic:'Functions',diff:'hard',q:'If f(x) = '+F('2x + 1','3x − 5')+', what is the domain of f<sup>−1</sup>(x)?',opts:['All reals','All reals except '+F('5','3'),'All reals except '+F('2','3'),'All reals except 0'],correct:2,
+  exp:'Domain of f<sup>−1</sup> = range of f. The function f never outputs '+F('2','3')+' (its horizontal asymptote), so that value is excluded.'},
+ {topic:'Functions',diff:'veryhard',q:'Find the domain of f(x) = '+F('ln(9 − x<sup>2</sup>)',R('x + 1'))+'.',opts:['(−1, 3)','(−3, 3)','(−1, 3]','(−∞, 3)'],correct:0,
+  exp:'Need 9 − x<sup>2</sup> &gt; 0, so −3 &lt; x &lt; 3. Also x + 1 &gt; 0 (strict, since the root is in the denominator), so x &gt; −1. Intersection: (−1, 3).'},
+
+ /* Logs */
+ {topic:'Logs',diff:'easy',q:'ln(e<sup>5</sup>) = ?',opts:['5','e<sup>5</sup>','1','ln 5'],correct:0,
+  exp:'ln and e are inverses, so ln(e<sup>5</sup>) = 5.'},
+ {topic:'Logs',diff:'medium',q:'log<sub>2</sub>(16) − log<sub>2</sub>(4) simplifies to:',opts:['2','4','log<sub>2</sub>(12)','8'],correct:0,
+  exp:'log<sub>2</sub>('+F('16','4')+') = log<sub>2</sub>(4) = 2.'},
+ {topic:'Logs',diff:'hard',q:'Simplify e<sup>2 ln x + ln y</sup>:',opts:['2x + y','x<sup>2</sup>y','x<sup>2</sup> + y','2xy'],correct:1,
+  exp:'2 ln x + ln y = ln(x<sup>2</sup>y), and e<sup>ln(x<sup>2</sup>y)</sup> = x<sup>2</sup>y.'},
+ {topic:'Logs',diff:'veryhard',q:'If ln A = 3 ln(x − 2) − '+F('1','2')+' ln y + 4, then A equals:',
+  opts:[F('(x − 2)<sup>3</sup> e<sup>4</sup>',R('y')),'3(x − 2)'+'·'+F('1',R('y'))+' + 4',(  '(x − 2)<sup>3</sup>'+R('y')+' e<sup>4</sup>'),'e<sup>4</sup>(x − 2)<sup>3</sup> − '+R('y')],correct:0,
+  exp:'Combine: ln A = ln[(x − 2)<sup>3</sup>] − ln['+R('y')+'] + ln(e<sup>4</sup>) = ln['+F('(x − 2)<sup>3</sup> e<sup>4</sup>',R('y'))+'], so A = '+F('(x − 2)<sup>3</sup> e<sup>4</sup>',R('y'))+'.'},
+
+ /* Trig */
+ {topic:'Trig',diff:'easy',q:'What is the domain of tan θ?',opts:['All reals','All reals except θ = '+F('π','2')+' + kπ','All reals except θ = kπ','[−1, 1]'],correct:1,
+  exp:'tan θ = '+F('sin θ','cos θ')+' is undefined wherever cos θ = 0, i.e. θ = '+F('π','2')+' + kπ.'},
+ {topic:'Trig',diff:'medium',q:'What is the range of sec θ?',opts:['[−1, 1]','(−∞, ∞)','(−∞, −1] ∪ [1, ∞)','[0, ∞)'],correct:2,
+  exp:'sec θ = '+F('1','cos θ')+', and since |cos θ| ≤ 1 (and cos θ ≠ 0), we get |sec θ| ≥ 1.'},
+ {topic:'Trig',diff:'hard',q:'The restricted domain used to define arccos x is:',opts:['['+'−'+F('π','2')+', '+F('π','2')+']','[0, π]','[−π, 0]','('+'−'+F('π','2')+', '+F('π','2')+')'],correct:1,
+  exp:'cos is restricted to [0, π] so that it is one-to-one before inverting.'},
+ {topic:'Trig',diff:'veryhard',q:'Solve sin(2θ) = cos θ on [0, 2π). How many solutions are there?',opts:['2','3','4','6'],correct:2,
+  exp:'2 sin θ cos θ − cos θ = 0, so cos θ (2 sin θ − 1) = 0. cos θ = 0 gives θ = '+F('π','2')+', '+F('3π','2')+'; sin θ = '+F('1','2')+' gives θ = '+F('π','6')+', '+F('5π','6')+'. Total: 4 solutions.'},
+
+ /* Limits */
+ {topic:'Limits',diff:'easy',q:'Evaluate '+LM('x→3',F('x<sup>2</sup> − 9','x − 3'))+'.',opts:['0','6','Undefined','3'],correct:1,
+  exp:'Factor: '+F('(x − 3)(x + 3)','x − 3')+' = x + 3, which approaches 3 + 3 = 6.'},
+ {topic:'Limits',diff:'easy',q:'Evaluate '+LM('x→0',F('sin x','x'))+'.',opts:['0','1','Undefined','∞'],correct:1,
+  exp:'This is the fundamental trig limit, proven with the Squeeze Theorem.'},
+ {topic:'Limits',diff:'medium',q:'Evaluate '+LM('t→1',F('t<sup>2</sup> + t − 2','t<sup>2</sup> − 1'))+'.',opts:[F('3','2'),'0','1','Does not exist'],correct:0,
+  exp:'t is approaching a finite number and substitution gives 0/0, so factor and cancel: '+F('(t + 2)(t − 1)','(t − 1)(t + 1)')+' = '+F('t + 2','t + 1')+', which approaches '+F('3','2')+'.'},
+ {topic:'Limits',diff:'medium',q:'Evaluate '+LM('h→0',F(R('4 + h')+' − 2','h'))+' without derivatives.',opts:[F('1','4'),'4',F('1','2'),'2'],correct:0,
+  exp:'Multiply top and bottom by the conjugate: '+F('(4 + h) − 4','h('+R('4 + h')+' + 2)')+' = '+F('1',R('4 + h')+' + 2')+', which approaches '+F('1','4')+'.'},
+ {topic:'Limits',diff:'medium',q:'Evaluate '+LM('x→∞',F('3x<sup>2</sup> + 1','6x<sup>2</sup> − x'))+'.',opts:['0',F('1','2'),'∞','3'],correct:1,
+  exp:'Divide top and bottom by x<sup>2</sup>: '+F('3 + '+F('1','x<sup>2</sup>'),'6 − '+F('1','x'))+' → '+F('3','6')+' = '+F('1','2')+'.'},
+ {topic:'Limits',diff:'hard',q:'Evaluate '+LM('x→−2<sup>+</sup>',F('x − 1','x + 2'))+'.',opts:['+∞','−∞','0',F('−3','2')],correct:1,
+  exp:'As x → −2<sup>+</sup>, the numerator → −3 (negative) and the denominator → 0<sup>+</sup> (tiny and positive). Negative divided by tiny positive gives −∞.'},
+ {topic:'Limits',diff:'hard',q:'Evaluate '+LM('x→0',F('tan 3x','sin 5x'))+'.',opts:[F('3','5'),F('5','3'),'0','1'],correct:0,
+  exp:'Rewrite tan 3x = '+F('sin 3x','cos 3x')+' and build the special-limit form: '+F('sin 3x','3x')+' · '+F('5x','sin 5x')+' · '+F('3','5')+' · '+F('1','cos 3x')+' → 1 · 1 · '+F('3','5')+' · 1 = '+F('3','5')+'.'},
+ {topic:'Limits',diff:'hard',q:'Evaluate '+LM('y→0',F('sin 11y','tan 8y'))+'.',opts:[F('11','8'),F('8','11'),'1','0'],correct:0,
+  exp:'Write tan 8y = '+F('sin 8y','cos 8y')+', then multiply to build sin(ky)/(ky) forms: '+F('sin 11y','11y')+' · '+F('8y','sin 8y')+' · '+F('11','8')+' · cos 8y → '+F('11','8')+'.'},
+ {topic:'Limits',diff:'veryhard',q:'Evaluate '+LM('x→∞','[x − '+R('x<sup>2</sup> + 3x')+']')+' (rationalize; no shortcuts).',opts:['0',F('−3','2'),'∞','3'],correct:1,
+  exp:'Multiply by the conjugate over itself: '+F('x<sup>2</sup> − (x<sup>2</sup> + 3x)','x + '+R('x<sup>2</sup> + 3x'))+' = '+F('−3x','x + '+R('x<sup>2</sup> + 3x'))+'. Divide top and bottom by x: '+F('−3','1 + 1')+' = '+F('−3','2')+'.'},
+ {topic:'Limits',diff:'veryhard',q:'The limit '+LM('x→∞','['+R('x<sup>2</sup> + 6x')+' − x]')+' is an ∞ − ∞ form. What technique applies first?',opts:['Multiply by the conjugate','Divide by x immediately','Squeeze Theorem','Factor and cancel'],correct:0,
+  exp:'∞ − ∞ forms with a root are handled by multiplying by the conjugate first. That turns it into a ∞/∞ form you can then divide through by x.'},
+
+ /* Continuity */
+ {topic:'Continuity',diff:'easy',q:'For f to be continuous at x = c, which of these is NOT required?',opts:['f(c) exists',LM('x→c','f(x)')+' exists','f is differentiable at c',LM('x→c','f(x)','f(c)')],correct:2,
+  exp:'Continuity needs the three-part definition. Differentiability is a stronger, separate condition.'},
+ {topic:'Continuity',diff:'medium',q:'A function is right-continuous at c if:',opts:[LM('x→c<sup>−</sup>','f(x)','f(c)'),LM('x→c<sup>+</sup>','f(x)','f(c)'),'f(c) is undefined',LM('x→c','f(x)')+' does not exist'],correct:1,
+  exp:'Right-continuity only checks the limit from the right side against f(c).'},
+ {topic:'Continuity',diff:'hard',q:'Let f(x) = ax<sup>2</sup> + 3 for x &lt; 2 and f(x) = 5x − a for x ≥ 2. Find a so that f is continuous at x = 2.',opts:['a = 1','a = '+F('7','5'),'a = 2','a = 5'],correct:1,
+  exp:'Set the one-sided limits equal: 4a + 3 = 10 − a, so 5a = 7 and a = '+F('7','5')+'.'},
+ {topic:'Continuity',diff:'veryhard',q:'Let g(x) = '+F('x<sup>2</sup> − 4','x − 2')+' for x ≠ 2, and g(2) = 5. At x = 2, g is:',opts:['Continuous','Discontinuous, removable','Discontinuous, jump','Discontinuous, infinite'],correct:1,
+  exp:LM('x→2','g(x)','4')+' but g(2) = 5. The limit exists and disagrees with the function value, which is a removable discontinuity.'},
+
+ /* IVT */
+ {topic:'IVT',diff:'easy',q:'The Intermediate Value Theorem requires f to be continuous on:',opts:['An open interval (a, b)','A closed interval [a, b]','All real numbers','Just the endpoints'],correct:1,
+  exp:'The hypothesis is continuity on the closed interval [a, b].'},
+ {topic:'IVT',diff:'medium',q:'The IVT guarantees:',opts:['Exactly one solution','At least one solution','No solutions','A unique maximum'],correct:1,
+  exp:'IVT only guarantees existence of at least one c, not uniqueness.'},
+ {topic:'IVT',diff:'hard',q:'To show x<sup>3</sup> − 4x + 1 = 0 has a root in [0, 1] using the IVT, the key step is showing:',opts:['f is a polynomial (hence continuous) and f(0), f(1) have opposite signs','f(0) = f(1)','f is increasing on [0, 1]','f has a critical point in [0, 1]'],correct:0,
+  exp:'You need continuity (a polynomial is continuous everywhere) plus f(0) = 1 and f(1) = −2 on opposite sides of 0.'},
+ {topic:'IVT',diff:'veryhard',q:'Which statement about the IVT is FALSE?',opts:['If f(a) and f(b) have the same sign, the IVT cannot be used to guarantee a root','The IVT requires only that f be defined on [a, b], not continuous','A sketch alone is not a valid IVT proof','The IVT can be applied to f(x) = cos x − x to show a fixed point exists'],correct:1,
+  exp:'The IVT explicitly requires continuity on [a, b]. Being defined is not enough.'},
+
+ /* Epsilon-Delta */
+ {topic:'Epsilon-Delta',diff:'medium',q:'The ε–δ definition of '+LM('x→a','f(x)','L')+' says: whenever 0 &lt; |x − a| &lt; δ, then:',opts:['|f(x) − L| &lt; ε','|x − a| &lt; ε','f(x) = L','|f(x) − L| &lt; δ'],correct:0,
+  exp:'The conclusion bounds |f(x) − L| by ε, not δ.'},
+ {topic:'Epsilon-Delta',diff:'hard',q:'To prove '+LM('x→2','(4x − 3)','5')+' with ε–δ, the correct choice of δ is:',opts:['δ = ε','δ = '+F('ε','4'),'δ = 4ε','δ = ε<sup>2</sup>'],correct:1,
+  exp:'|f(x) − L| = |4x − 3 − 5| = 4|x − 2| &lt; ε requires |x − 2| &lt; '+F('ε','4')+', so δ = '+F('ε','4')+'.'},
+ {topic:'Epsilon-Delta',diff:'veryhard',q:'To prove '+LM('x→3',F('x<sup>2</sup> − 9','x − 3'),'6')+' with ε–δ, before running the standard argument you must first:',opts:['Take the derivative','Cancel (x − 3), valid because x ≠ 3 in the definition','Apply L’Hôpital’s Rule','Assume x = 3 directly'],correct:1,
+  exp:'Since 0 &lt; |x − a| excludes x = a, canceling (x − 3) is valid. The expression reduces to x + 3, and the linear ε–δ argument applies.'},
+
+ /* Derivatives 3.1-3.2 */
+ {topic:'Derivatives',diff:'easy',q:'Which limit defines the derivative f′(a)?',
+  opts:[LM('h→0',F('f(a + h) − f(a)','h')),LM('h→0',F('f(a + h) + f(a)','h')),LM('x→a',F('f(x) − f(a)','x + a')),LM('h→0',F('f(a + h)','f(a)'))],correct:0,
+  exp:'The derivative is the limit of the secant slope as the increment h → 0. The equivalent form is '+LM('x→a',F('f(x) − f(a)','x − a'))+' (note x − a in the denominator, not x + a).'},
+ {topic:'Derivatives',diff:'medium',q:'Which statement is true?',
+  opts:['If f is differentiable at c, then f is continuous at c.','If f is continuous at c, then f is differentiable at c.','A function that is discontinuous at c can still be differentiable at c.','If f′(c) = 0, then f is not continuous at c.'],correct:0,
+  exp:'Differentiable ⟹ continuous is the theorem. The converse is false: |x| is continuous at 0 but not differentiable there.'},
+ {topic:'Derivatives',diff:'medium',q:'Using the limit definition, the slope of the graph of f(x) = x<sup>2</sup> + x at x = 3 is:',opts:['5','6','7','9'],correct:2,
+  exp:'f(3) = 12, so '+LM('h→0',F('(3 + h)<sup>2</sup> + (3 + h) − 12','h'))+' = '+LM('h→0',F('7h + h<sup>2</sup>','h'))+' = '+LM('h→0','(7 + h)')+' = 7.'},
+ {topic:'Derivatives',diff:'hard',q:'The tangent line to y = '+R('x')+' at x = 4 is:',
+  opts:['y = '+F('x','4')+' + 1','y = '+F('x','2')+' + 1','y = '+F('x','4')+' + 2','y = 4x − 14'],correct:0,
+  exp:'Slope: '+LM('x→4',F(R('x')+' − 2','x − 4'))+' = '+LM('x→4',F('1',R('x')+' + 2'))+' = '+F('1','4')+'. The point is (4, 2), so y − 2 = '+F('1','4')+'(x − 4), which gives y = '+F('x','4')+' + 1.'},
+ {topic:'Derivatives',diff:'veryhard',q:'Using the definition of the derivative, if f(x) = '+F('x','x − 1')+', then f′(x) equals:',
+  opts:[F('−1','(x − 1)<sup>2</sup>'),F('1','(x − 1)<sup>2</sup>'),F('−2','(x − 1)<sup>2</sup>'),F('x','(x − 1)<sup>2</sup>')],correct:0,
+  exp:'Common denominator: '+F('(x + h)(x − 1) − x(x + h − 1)','h(x + h − 1)(x − 1)')+'. The numerator simplifies to −h, so after canceling h we get '+LM('h→0',F('−1','(x + h − 1)(x − 1)'))+' = '+F('−1','(x − 1)<sup>2</sup>')+'.'},
+ {topic:'Derivatives',diff:'veryhard',q:'Let f(x) = x<sup>2</sup> for x ≤ 1 and f(x) = x for x &gt; 1. At x = 1, f is:',
+  opts:['Continuous and differentiable','Continuous but not differentiable','Differentiable but not continuous','Neither continuous nor differentiable'],correct:1,
+  exp:'Both pieces equal 1 at x = 1, so f is continuous. The left-hand slope is 2x = 2 and the right-hand slope is 1. The one-sided derivatives differ, so there is a corner and f is not differentiable.'}
+];
+
+/* ---------- Midterm 2 quiz bank (Textbook 3.1-3.9) ---------- */
+const TOPICS2 = ['Definition','Rules','Rates','Trig Derivatives','Chain Rule','Implicit','Logs & Inverses','Inverse Trig'];
+const D_ = F('d','dx');
+const PI2 = F('π','2');
+
+const QUIZ_BANK2 = [
+ /* Definition (3.1-3.2) */
+ {topic:'Definition',diff:'easy',q:'Evaluate '+D_+'('+F('1','x')+').',opts:[F('−1','x<sup>2</sup>'),F('1','x<sup>2</sup>'),'ln x',F('−1','x')],correct:0,
+  exp:'Write '+F('1','x')+' as x<sup>−1</sup>. The power rule gives −x<sup>−2</sup> = '+F('−1','x<sup>2</sup>')+'.'},
+ {topic:'Definition',diff:'medium',q:'Which statement is true?',opts:['If f is differentiable at c, then f is continuous at c.','If f is continuous at c, then f is differentiable at c.','A function that is discontinuous at c can still be differentiable at c.','If f′(c) = 0, then f is not continuous at c.'],correct:0,
+  exp:'Differentiable ⟹ continuous is the theorem. The converse is false: |x| is continuous at 0 but not differentiable there.'},
+ {topic:'Definition',diff:'hard',q:'For f(x) = |x|, which statement explains why f′(0) does not exist?',opts:['The left-hand slope is −1 and the right-hand slope is 1, so they differ','f is not continuous at 0','The slopes approach +∞ from both sides','f(0) is undefined'],correct:0,
+  exp:'f is continuous at 0 and defined there, but the one-sided derivatives (−1 and 1) disagree. That is a corner.'},
+ {topic:'Definition',diff:'veryhard',q:'Let f(x) = x<sup>2</sup> for x ≤ 1 and f(x) = ax + b for x &gt; 1. For f to be differentiable at x = 1, the values of a and b are:',opts:['a = 2, b = −1','a = 1, b = 0','a = 2, b = 1','a = 1, b = 2'],correct:0,
+  exp:'Continuity at 1 needs a + b = 1. Matching slopes needs a = 2x at x = 1, so a = 2. Then b = −1.'},
+
+ /* Rules (3.3) */
+ {topic:'Rules',diff:'easy',q:'Evaluate '+D_+' x<sup>5</sup>.',opts:['5x<sup>4</sup>','x<sup>4</sup>','5x<sup>5</sup>','4x<sup>5</sup>'],correct:0,
+  exp:'Power rule: n x<sup>n−1</sup> with n = 5.'},
+ {topic:'Rules',diff:'medium',q:'Evaluate '+D_+'(3x<sup>2</sup> − 4x + 7).',opts:['6x − 4','6x + 7','3x − 4','6x + 3'],correct:0,
+  exp:'Differentiate term by term: 6x − 4 + 0.'},
+ {topic:'Rules',diff:'medium',q:'Evaluate '+D_+'(x<sup>2</sup>e<sup>x</sup>).',opts:['e<sup>x</sup>(x<sup>2</sup> + 2x)','2xe<sup>x</sup>','x<sup>2</sup>e<sup>x</sup>','2x<sup>2</sup>e<sup>x</sup>'],correct:0,
+  exp:'Product rule: x<sup>2</sup>·e<sup>x</sup> + e<sup>x</sup>·2x = e<sup>x</sup>(x<sup>2</sup> + 2x).'},
+ {topic:'Rules',diff:'hard',q:'Evaluate '+D_+'('+F('x','x<sup>2</sup> + 1')+').',opts:[F('1 − x<sup>2</sup>','(x<sup>2</sup> + 1)<sup>2</sup>'),F('x<sup>2</sup> − 1','(x<sup>2</sup> + 1)<sup>2</sup>'),F('1','2x'),F('1 + x<sup>2</sup>','(x<sup>2</sup> + 1)<sup>2</sup>')],correct:0,
+  exp:'Quotient rule: '+F('1·(x<sup>2</sup> + 1) − x·2x','(x<sup>2</sup> + 1)<sup>2</sup>')+' = '+F('1 − x<sup>2</sup>','(x<sup>2</sup> + 1)<sup>2</sup>')+'.'},
+ {topic:'Rules',diff:'hard',q:'At how many points does y = x<sup>4</sup> − 2x<sup>2</sup> + 2 have a horizontal tangent?',opts:['1','2','3','4'],correct:2,
+  exp:'y′ = 4x<sup>3</sup> − 4x = 4x(x − 1)(x + 1) = 0 at x = 0, 1, −1. That is 3 points.'},
+ {topic:'Rules',diff:'veryhard',q:'The line through the origin that is tangent to y = e<sup>x</sup> is:',opts:['y = ex','y = x','y = '+F('x','e'),'y = e<sup>2</sup>x'],correct:0,
+  exp:'The tangent at x = a is y = e<sup>a</sup> + e<sup>a</sup>(x − a). Passing through (0, 0) means 0 = e<sup>a</sup>(1 − a), so a = 1 and the line is y = ex.'},
+
+ /* Rates (3.4) */
+ {topic:'Rates',diff:'easy',q:'If s = f(t) gives position along a line, the velocity is:',opts:[F('ds','dt'),F('d<sup>2</sup>s','dt<sup>2</sup>'),F('d<sup>3</sup>s','dt<sup>3</sup>'),'|s|'],correct:0,
+  exp:'v = '+F('ds','dt')+'. Acceleration is '+F('d<sup>2</sup>s','dt<sup>2</sup>')+' and jerk is '+F('d<sup>3</sup>s','dt<sup>3</sup>')+'.'},
+ {topic:'Rates',diff:'medium',q:'The cost of x radiators is c(x) = x<sup>3</sup> − 6x<sup>2</sup> + 15x. The marginal cost at x = 2 is:',opts:['3','15','−3','9'],correct:0,
+  exp:'Marginal cost is c′(x) = 3x<sup>2</sup> − 12x + 15, so c′(2) = 12 − 24 + 15 = 3.'},
+ {topic:'Rates',diff:'medium',q:'An object in free fall has position s = 16t<sup>2</sup> (ft). Its jerk is:',opts:['0','32','64','16t'],correct:0,
+  exp:'v = 32t, a = 32 (constant), so jerk j = '+F('da','dt')+' = 0.'},
+ {topic:'Rates',diff:'hard',q:'A rock is blasted upward with s = 160t − 16t<sup>2</sup> (ft). Its maximum height is:',opts:['400 ft','800 ft','160 ft','256 ft'],correct:0,
+  exp:'v = 160 − 32t = 0 at t = 5, and s(5) = 800 − 400 = 400 ft.'},
+ {topic:'Rates',diff:'hard',q:'A particle has position s = t<sup>3</sup> − 9t<sup>2</sup> + 24t. At t = 1 the particle is:',opts:['Moving forward and speeding up','Moving forward and slowing down','Moving backward and speeding up','Moving backward and slowing down'],correct:1,
+  exp:'v = 3t<sup>2</sup> − 18t + 24, so v(1) = 9 &gt; 0 (forward). a = 6t − 18, so a(1) = −12 &lt; 0. Opposite signs means slowing down.'},
+ {topic:'Rates',diff:'veryhard',q:'A rock is blasted upward with s = 160t − 16t<sup>2</sup> (ft). Its velocity when it hits the ground is:',opts:['−160 ft/sec','160 ft/sec','0 ft/sec','−320 ft/sec'],correct:0,
+  exp:'s = 0 when t(160 − 16t) = 0, so t = 10. Then v(10) = 160 − 320 = −160 ft/sec. The speed is 160 ft/sec, but the velocity is negative because the rock is moving down.'},
+
+ /* Trig derivatives (3.5) */
+ {topic:'Trig Derivatives',diff:'easy',q:'Evaluate '+D_+' cos x.',opts:['−sin x','sin x','−cos x','sec<sup>2</sup>x'],correct:0,
+  exp:'The derivative of cos x is −sin x.'},
+ {topic:'Trig Derivatives',diff:'easy',q:'Evaluate '+D_+' tan x.',opts:['sec<sup>2</sup>x','−csc<sup>2</sup>x','sec x tan x','cot x'],correct:0,
+  exp:'Quotient rule on '+F('sin x','cos x')+' gives '+F('1','cos<sup>2</sup>x')+' = sec<sup>2</sup>x.'},
+ {topic:'Trig Derivatives',diff:'medium',q:'A weight moves with s = 5 cos t. Its velocity is:',opts:['−5 sin t','5 sin t','−5 cos t','5 cos t'],correct:0,
+  exp:'v = '+F('ds','dt')+' = −5 sin t.'},
+ {topic:'Trig Derivatives',diff:'medium',q:'Evaluate '+D_+'(e<sup>x</sup> sin x).',opts:['e<sup>x</sup>(sin x + cos x)','e<sup>x</sup> cos x','e<sup>x</sup>(sin x − cos x)','e<sup>x</sup> sin x − cos x'],correct:0,
+  exp:'Product rule: e<sup>x</sup> sin x + e<sup>x</sup> cos x.'},
+ {topic:'Trig Derivatives',diff:'hard',q:'Evaluate '+D_+'('+F('sin x','x')+').',opts:[F('x cos x − sin x','x<sup>2</sup>'),F('cos x − sin x','x<sup>2</sup>'),F('sin x − x cos x','x<sup>2</sup>'),F('cos x','x')],correct:0,
+  exp:'Quotient rule: '+F('x·cos x − sin x·1','x<sup>2</sup>')+'.'},
+ {topic:'Trig Derivatives',diff:'veryhard',q:'If y = sec x, then y″ equals:',opts:['sec<sup>3</sup>x + sec x tan<sup>2</sup>x','sec x tan x','sec<sup>2</sup>x tan x','sec<sup>3</sup>x − sec x tan<sup>2</sup>x'],correct:0,
+  exp:'y′ = sec x tan x. Product rule: y″ = (sec x tan x) tan x + sec x (sec<sup>2</sup>x) = sec x tan<sup>2</sup>x + sec<sup>3</sup>x.'},
+
+ /* Chain rule (3.6) */
+ {topic:'Chain Rule',diff:'easy',q:'Evaluate '+D_+'(3x<sup>2</sup> + 1)<sup>2</sup>.',opts:['12x(3x<sup>2</sup> + 1)','2(3x<sup>2</sup> + 1)','6x(3x<sup>2</sup> + 1)','12x'],correct:0,
+  exp:'Outside: 2(3x<sup>2</sup> + 1). Inside: 6x. Product: 12x(3x<sup>2</sup> + 1).'},
+ {topic:'Chain Rule',diff:'medium',q:'Evaluate '+D_+' e<sup>3x</sup>.',opts:['3e<sup>3x</sup>','e<sup>3x</sup>','3xe<sup>3x−1</sup>','e<sup>3</sup>'],correct:0,
+  exp:'d/dx e<sup>kx</sup> = k e<sup>kx</sup>.'},
+ {topic:'Chain Rule',diff:'medium',q:'Evaluate '+D_+' sin<sup>5</sup>x.',opts:['5 sin<sup>4</sup>x cos x','5 sin<sup>4</sup>x','5 cos<sup>4</sup>x (−sin x)','sin<sup>5</sup>x cos x'],correct:0,
+  exp:'Power chain rule: 5 sin<sup>4</sup>x times the derivative of the inside, cos x.'},
+ {topic:'Chain Rule',diff:'hard',q:'Evaluate '+D_+' cos(t<sup>2</sup> + 1) (in t).',opts:['−2t sin(t<sup>2</sup> + 1)','−sin(t<sup>2</sup> + 1)','2t sin(t<sup>2</sup> + 1)','−2t cos(t<sup>2</sup> + 1)'],correct:0,
+  exp:'Outside: −sin(t<sup>2</sup> + 1). Inside derivative: 2t.'},
+ {topic:'Chain Rule',diff:'hard',q:'Evaluate '+D_+' e<sup>'+R('3x + 1')+'</sup>.',opts:[F('3e<sup>'+R('3x + 1')+'</sup>','2'+R('3x + 1')),F('e<sup>'+R('3x + 1')+'</sup>','2'+R('3x + 1')),'3e<sup>'+R('3x + 1')+'</sup>',F('3','2'+R('3x + 1'))],correct:0,
+  exp:'Three layers: e<sup>u</sup>, then the root, then 3x + 1. Result: e<sup>'+R('3x + 1')+'</sup> · '+F('1','2'+R('3x + 1'))+' · 3.'},
+ {topic:'Chain Rule',diff:'hard',q:'Evaluate '+D_+'('+F('1','3x − 2')+').',opts:[F('−3','(3x − 2)<sup>2</sup>'),F('−1','(3x − 2)<sup>2</sup>'),F('3','(3x − 2)<sup>2</sup>'),F('−3','3x − 2')],correct:0,
+  exp:'Write (3x − 2)<sup>−1</sup>. Then −(3x − 2)<sup>−2</sup> · 3.'},
+ {topic:'Chain Rule',diff:'veryhard',q:'Evaluate '+D_+' tan(5 − sin 2t) (in t).',opts:['−2 cos(2t) sec<sup>2</sup>(5 − sin 2t)','sec<sup>2</sup>(5 − sin 2t)','−cos(2t) sec<sup>2</sup>(5 − sin 2t)','2 cos(2t) sec<sup>2</sup>(5 − sin 2t)'],correct:0,
+  exp:'Outside: sec<sup>2</sup>(5 − sin 2t). Middle: derivative of (5 − sin 2t) is −cos(2t). Inside: times 2. Result: −2 cos(2t) sec<sup>2</sup>(5 − sin 2t).'},
+ {topic:'Chain Rule',diff:'veryhard',q:'For y = '+F('1','(1 − 2x)<sup>3</sup>')+', which is y′, and what does it say about every tangent line?',opts:[F('6','(1 − 2x)<sup>4</sup>')+', always positive slope',F('−6','(1 − 2x)<sup>4</sup>')+', always negative slope',F('−3','(1 − 2x)<sup>4</sup>')+', always negative slope',F('3','(1 − 2x)<sup>4</sup>')+', always positive slope'],correct:0,
+  exp:'y = (1 − 2x)<sup>−3</sup>, so y′ = −3(1 − 2x)<sup>−4</sup>(−2) = '+F('6','(1 − 2x)<sup>4</sup>')+', which is positive wherever it is defined.'},
+
+ /* Implicit (3.7) */
+ {topic:'Implicit',diff:'easy',q:'If y<sup>2</sup> = x, then '+F('dy','dx')+' equals:',opts:[F('1','2y'),F('1','y'),'2y',F('2','y')],correct:0,
+  exp:'Differentiate both sides: 2y '+F('dy','dx')+' = 1.'},
+ {topic:'Implicit',diff:'medium',q:'On the circle x<sup>2</sup> + y<sup>2</sup> = 25, the slope of the tangent at (3, −4) is:',opts:[F('3','4'),F('−3','4'),F('4','3'),F('−4','3')],correct:0,
+  exp:F('dy','dx')+' = '+F('−x','y')+' = '+F('−3','−4')+' = '+F('3','4')+'.'},
+ {topic:'Implicit',diff:'hard',q:'For x<sup>3</sup> + y<sup>3</sup> − 9xy = 0, the slope of the tangent at (2, 4) is:',opts:[F('4','5'),F('5','4'),F('−4','5'),'0'],correct:0,
+  exp:'3x<sup>2</sup> + 3y<sup>2</sup>y′ − 9y − 9xy′ = 0 gives y′ = '+F('3y − x<sup>2</sup>','y<sup>2</sup> − 3x')+' = '+F('12 − 4','16 − 6')+' = '+F('4','5')+'.'},
+ {topic:'Implicit',diff:'hard',q:'For the same curve x<sup>3</sup> + y<sup>3</sup> − 9xy = 0 at (2, 4), the slope of the <em>normal</em> line is:',opts:[F('−5','4'),F('−4','5'),F('5','4'),F('4','5')],correct:0,
+  exp:'The tangent slope is '+F('4','5')+'. The normal slope is its negative reciprocal, '+F('−5','4')+'.'},
+ {topic:'Implicit',diff:'veryhard',q:'For 2x<sup>3</sup> − 3y<sup>2</sup> = 8, y″ equals:',opts:[F('2x','y')+' − '+F('x<sup>4</sup>','y<sup>3</sup>'),F('2x','y'),F('x<sup>2</sup>','y'),F('2x','y')+' + '+F('x<sup>4</sup>','y<sup>3</sup>')],correct:0,
+  exp:'y′ = '+F('x<sup>2</sup>','y')+'. Quotient rule: y″ = '+F('2x·y − x<sup>2</sup>·y′','y<sup>2</sup>')+'. Substitute y′: '+F('2x','y')+' − '+F('x<sup>4</sup>','y<sup>3</sup>')+'.'},
+
+ /* Logs & inverses (3.8) */
+ {topic:'Logs & Inverses',diff:'easy',q:'Evaluate '+D_+' ln x.',opts:[F('1','x'),'ln x','x','e<sup>x</sup>'],correct:0,
+  exp:'For x &gt; 0, '+D_+' ln x = '+F('1','x')+'.'},
+ {topic:'Logs & Inverses',diff:'easy',q:'Evaluate '+D_+' ln(x<sup>2</sup> + 3).',opts:[F('2x','x<sup>2</sup> + 3'),F('1','x<sup>2</sup> + 3'),F('1','2x'),'2x ln(x<sup>2</sup> + 3)'],correct:0,
+  exp:D_+' ln u = '+F('1','u')+' '+F('du','dx')+', with u = x<sup>2</sup> + 3.'},
+ {topic:'Logs & Inverses',diff:'medium',q:'Evaluate '+D_+' 3<sup>x</sup>.',opts:['3<sup>x</sup> ln 3','3<sup>x</sup>','x·3<sup>x−1</sup>',F('3<sup>x</sup>','ln 3')],correct:0,
+  exp:D_+' a<sup>x</sup> = a<sup>x</sup> ln a.'},
+ {topic:'Logs & Inverses',diff:'medium',q:'Let f(x) = x<sup>3</sup> − 2. What is (f<sup>−1</sup>)′(6)?',opts:[F('1','12'),'12',F('1','6'),F('1','2')],correct:0,
+  exp:'f(2) = 6, so f<sup>−1</sup>(6) = 2. Then (f<sup>−1</sup>)′(6) = '+F('1','f′(2)')+' = '+F('1','12')+'.'},
+ {topic:'Logs & Inverses',diff:'hard',q:'Evaluate '+D_+' x<sup>x</sup> (for x &gt; 0).',opts:['x<sup>x</sup>(ln x + 1)','x·x<sup>x−1</sup>','x<sup>x</sup> ln x','x<sup>x</sup>'],correct:0,
+  exp:'Let y = x<sup>x</sup>. Then ln y = x ln x, so '+F('y′','y')+' = ln x + 1.'},
+ {topic:'Logs & Inverses',diff:'hard',q:'Evaluate '+D_+' log<sub>2</sub> x.',opts:[F('1','x ln 2'),F('1','x'),F('ln 2','x'),F('1','2x')],correct:0,
+  exp:D_+' log<sub>a</sub> x = '+F('1','x ln a')+'.'},
+ {topic:'Logs & Inverses',diff:'veryhard',q:'Using logarithmic differentiation on y = '+F('(x<sup>2</sup> + 1)'+R('x + 3'),'x − 1')+', the quantity '+F('y′','y')+' equals:',
+  opts:[F('2x','x<sup>2</sup> + 1')+' + '+F('1','2(x + 3)')+' − '+F('1','x − 1'),F('2x','x<sup>2</sup> + 1')+' + '+F('1','x + 3')+' − '+F('1','x − 1'),F('2x','x<sup>2</sup> + 1')+' + '+F('1','2(x + 3)')+' + '+F('1','x − 1'),F('1','x<sup>2</sup> + 1')+' + '+F('1','2(x + 3)')+' − '+F('1','x − 1')],correct:0,
+  exp:'ln y = ln(x<sup>2</sup> + 1) + '+F('1','2')+' ln(x + 3) − ln(x − 1). Differentiate each term: '+F('2x','x<sup>2</sup> + 1')+' + '+F('1','2(x + 3)')+' − '+F('1','x − 1')+'.'},
+ {topic:'Logs & Inverses',diff:'veryhard',q:'Evaluate '+D_+' 3<sup>sin x</sup>.',opts:['3<sup>sin x</sup> ln 3 · cos x','3<sup>sin x</sup> cos x','sin x · 3<sup>sin x − 1</sup>','3<sup>sin x</sup> ln 3'],correct:0,
+  exp:D_+' a<sup>u</sup> = a<sup>u</sup> ln a '+F('du','dx')+', with u = sin x.'},
+
+ /* Inverse trig (3.9) */
+ {topic:'Inverse Trig',diff:'easy',q:'The range of arctan x is:',opts:['(−'+PI2+', '+PI2+')','[0, π]','[−'+PI2+', '+PI2+']','(0, π)'],correct:0,
+  exp:'arctan takes values strictly between −'+PI2+' and '+PI2+', with horizontal asymptotes y = ±'+PI2+'.'},
+ {topic:'Inverse Trig',diff:'medium',q:'Evaluate '+D_+' arctan x.',opts:[F('1','1 + x<sup>2</sup>'),F('1',R('1 − x<sup>2</sup>')),F('−1','1 + x<sup>2</sup>'),F('1','x'+R('x<sup>2</sup> − 1'))],correct:0,
+  exp:D_+' arctan u = '+F('1','1 + u<sup>2</sup>')+' '+F('du','dx')+'.'},
+ {topic:'Inverse Trig',diff:'medium',q:'Evaluate '+D_+' arccos x.',opts:[F('−1',R('1 − x<sup>2</sup>')),F('1',R('1 − x<sup>2</sup>')),F('−1','1 + x<sup>2</sup>'),F('1','|x|'+R('x<sup>2</sup> − 1'))],correct:0,
+  exp:'arccos x = '+PI2+' − arcsin x, so its derivative is the negative of arcsin’s.'},
+ {topic:'Inverse Trig',diff:'hard',q:'arcsin x is not differentiable at:',opts:['x = ±1','x = 0','x = ±'+PI2,'Nowhere'],correct:0,
+  exp:'arcsin has vertical tangents at x = ±1, where '+F('1',R('1 − x<sup>2</sup>'))+' blows up.'},
+ {topic:'Inverse Trig',diff:'hard',q:'Evaluate '+D_+' arcsin(x<sup>2</sup>).',opts:[F('2x',R('1 − x<sup>4</sup>')),F('1',R('1 − x<sup>4</sup>')),F('2x',R('1 − x<sup>2</sup>')),F('x<sup>2</sup>',R('1 − x<sup>4</sup>'))],correct:0,
+  exp:'With u = x<sup>2</sup>: '+F('1',R('1 − u<sup>2</sup>'))+' · 2x = '+F('2x',R('1 − x<sup>4</sup>'))+'.'},
+ {topic:'Inverse Trig',diff:'hard',q:'Evaluate '+D_+' arcsec(5x<sup>4</sup>).',opts:[F('4','x'+R('25x<sup>8</sup> − 1')),F('20x<sup>3</sup>',R('25x<sup>8</sup> − 1')),F('4',R('1 − 25x<sup>8</sup>')),F('20x<sup>3</sup>','1 + 25x<sup>8</sup>')],correct:0,
+  exp:'With u = 5x<sup>4</sup>, du/dx = 20x<sup>3</sup> and |u| = 5x<sup>4</sup>: '+F('20x<sup>3</sup>','5x<sup>4</sup>'+R('25x<sup>8</sup> − 1'))+' = '+F('4','x'+R('25x<sup>8</sup> − 1'))+'.'},
+ {topic:'Inverse Trig',diff:'veryhard',q:'Evaluate '+D_+'('+F('1','arctan x')+').',opts:[F('−1','(arctan x)<sup>2</sup>(1 + x<sup>2</sup>)'),F('−1','(arctan x)<sup>2</sup>'),F('1','(arctan x)<sup>2</sup>(1 + x<sup>2</sup>)'),F('−1','1 + x<sup>2</sup>')],correct:0,
+  exp:'Write (arctan x)<sup>−1</sup>: −(arctan x)<sup>−2</sup> times '+F('1','1 + x<sup>2</sup>')+'.'}
+];
+
+const EXAMS = {
+  1:{name:'Midterm 1', topics:TOPICS, get bank(){return QUIZ_BANK;}},
+  2:{name:'Midterm 2', topics:TOPICS2, get bank(){return QUIZ_BANK2;}}
+};
+
+/* ---------- DOM helpers ---------- */
+function el(tag, attrs={}, ...children){
+  const e = document.createElement(tag);
+  for(const k in attrs){
+    if(k==='class') e.className=attrs[k];
+    else if(k==='html') e.innerHTML=attrs[k];
+    else if(k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]);
+    else e.setAttribute(k, attrs[k]);
+  }
+  children.forEach(c=>{ if(typeof c==='string') e.appendChild(document.createTextNode(c)); else if(c) e.appendChild(c); });
+  return e;
+}
+function P(h,cls){return el('p',{class:cls||'',html:h});}
+function FM(h){return el('div',{class:'formula',html:h});}
+function H3(t){return el('h3',{html:t});}
+function UL(items){return el('ul',{html:items.map(i=>'<li>'+i+'</li>').join('')});}
+function OL(items){return el('ol',{html:items.map(i=>'<li>'+i+'</li>').join('')});}
+function TBL(h){return el('table',{html:h});}
+function CARD(cls,...kids){const c=el('div',{class:'card'+(cls?' '+cls:'')});kids.forEach(k=>c.appendChild(k));return c;}
+function sec(id,title,...cards){const s=el('section',{id});s.appendChild(el('h2',{html:title}));cards.forEach(c=>s.appendChild(c));return s;}
+
+function render(keepScroll){
+  const app = document.getElementById('app');
+  app.innerHTML = '';
+  if(state.view==='home') app.appendChild(renderHome());
+  else if(state.view==='review') app.appendChild(state.exam===2?renderReview2():renderReview());
+  else if(state.view==='quizsetup') app.appendChild(renderQuizSetup());
+  else if(state.view==='quiz') app.appendChild(renderQuiz());
+  else if(state.view==='results') app.appendChild(renderResults());
+  if(!keepScroll) window.scrollTo(0,0);
+}
+
+/* ---------- Home ---------- */
+function renderHome(){
+  const c = el('div');
+  const hero = el('div',{class:'hero'});
+  hero.appendChild(el('div',{class:'word'},'MA111'));
+  hero.appendChild(el('div',{class:'sub'},'Calculus I — Study Hub'));
+  c.appendChild(hero);
+  c.appendChild(el('div',{class:'tag'},'Pick an exam to review. More units get added as the term goes on.'));
+  c.appendChild(el('button',{class:'home-btn',onclick:()=>{openExam(1);}},
+    'Midterm 1 Review',
+    el('span',{class:'desc'},'Functions, logs, trig, limits & indeterminate forms, continuity, IVT, ε–δ, derivative basics (3.1–3.2) — plus a practice quiz')));
+  c.appendChild(el('button',{class:'home-btn',onclick:()=>{openExam(2);}},
+    'Midterm 2 Review',
+    el('span',{class:'desc'},'Textbook 3.1–3.9: differentiation rules, rates of change, trig derivatives, chain rule, implicit differentiation, logs & inverses, inverse trig — plus a practice quiz')));
+  ['Midterm 3 Review','Midterm 4 Review','Final Review'].forEach(t=>{
+    c.appendChild(el('div',{class:'home-btn disabled'}, t, el('span',{class:'desc'},'Coming later this term')));
+  });
+  return c;
+}
+
+function openExam(n){
+  state.exam = n;
+  state.selectedTopics = new Set(EXAMS[n].topics);
+  state.selectedDiffs = new Set(['easy','medium','hard','veryhard']);
+  state.view = 'review';
+  render();
+}
+
+function backBtn(){
+  return el('button',{class:'backbtn',onclick:()=>{state.view='home';render();}},'← Back to units');
+}
+
+/* ---------- Review page ---------- */
+function renderReview(){
+  const c = el('div');
+  c.appendChild(backBtn());
+  c.appendChild(el('h1',{},'Midterm 1 Review'));
+  c.appendChild(el('div',{class:'tag'},'Functions · Limits · Continuity · IVT · Derivative basics'));
+
+  const ids = ['functions','logs','trig','limits','squeeze','continuity','ivt','epsdelta','derivs'];
+  const labels = ['Functions','Logs','Trig','Limits','Squeeze','Continuity','IVT','ε–δ','Derivatives'];
+  const nav = el('nav');
+  ids.forEach((id,i)=> nav.appendChild(el('a',{href:'#'+id},labels[i])));
+  c.appendChild(nav);
+
+  c.appendChild(el('div',{class:'rule-box',html:'<strong>Exam constraints: </strong>No L’Hôpital’s Rule and no “growth rate” hand-waving. Every limit must be solved algebraically (factoring, conjugates, trig identities, or dividing by the highest power of x). One True/False question and one detailed IVT question (possibly requiring you to define related theorems) will appear.'}));
+
+  c.appendChild(sectionFunctions());
+  c.appendChild(sectionLogs());
+  c.appendChild(sectionTrig());
+  c.appendChild(sectionLimits());
+  c.appendChild(sectionSqueeze());
+  c.appendChild(sectionContinuity());
+  c.appendChild(sectionIVT());
+  c.appendChild(sectionEpsDelta());
+  c.appendChild(sectionDerivs());
+
+  c.appendChild(el('button',{class:'quizcta',onclick:()=>{state.view='quizsetup';render();}},'Take the Practice Quiz →'));
+  return c;
+}
+
+function sectionFunctions(){
+  const card = CARD('',
+    P('“Functions” here means the core families you are expected to know cold: trigonometric functions (sin, cos, tan, etc. — see the Trig section), logarithmic functions (ln, log<sub>a</sub>), and exponential functions (e<sup>x</sup>, a<sup>x</sup>) — plus how to find domain, range, and inverses for any combination of them.','small'),
+    H3('Domain/Range checklist'),
+    UL(['Denominators ≠ 0','Even roots: radicand ≥ 0','Logarithms: argument &gt; 0','e<sup>x</sup> has domain (−∞, ∞) and range (0, ∞)','ln x has domain (0, ∞) and range (−∞, ∞)']),
+    H3('Finding an inverse'),
+    OL(['Replace f(x) with y','Swap x and y','Solve for y','Domain of f<sup>−1</sup> = range of f, and range of f<sup>−1</sup> = domain of f']),
+    P('Invertible ⟺ one-to-one (horizontal line test). Restricting the domain is how sin, cos, and tan get inverses.','small'));
+  return sec('functions','1. Functions: Domain, Range, Inverses',card);
+}
+
+function sectionLogs(){
+  const card = CARD('overflow-x',
+    TBL('<tr><th>Exponent Rule</th><th>Log Rule</th></tr>'+
+     '<tr><td>a<sup>m</sup>a<sup>n</sup> = a<sup>m+n</sup></td><td>log(mn) = log m + log n</td></tr>'+
+     '<tr><td>'+F('a<sup>m</sup>','a<sup>n</sup>')+' = a<sup>m−n</sup></td><td>log('+F('m','n')+') = log m − log n</td></tr>'+
+     '<tr><td>(a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup></td><td>log(m<sup>n</sup>) = n log m</td></tr>'+
+     '<tr><td>a<sup>0</sup> = 1</td><td>log<sub>a</sub>(1) = 0</td></tr>'+
+     '<tr><td>e<sup>ln x</sup> = x</td><td>ln(e<sup>x</sup>) = x</td></tr>'),
+    P('Trap: log(m + n) ≠ log m + log n. There is no rule for the log of a sum.','small'));
+  return sec('logs','2. Log &amp; Exponent Laws',card);
+}
+
+function sectionTrig(){
+  const c1 = CARD('overflow-x',
+    H3('Unit circle — first quadrant'),
+    TBL('<tr><th>θ</th><th>0</th><th>'+F('π','6')+'</th><th>'+F('π','4')+'</th><th>'+F('π','3')+'</th><th>'+F('π','2')+'</th></tr>'+
+     '<tr><td>sin θ</td><td>0</td><td>'+F('1','2')+'</td><td>'+F(R('2'),'2')+'</td><td>'+F(R('3'),'2')+'</td><td>1</td></tr>'+
+     '<tr><td>cos θ</td><td>1</td><td>'+F(R('3'),'2')+'</td><td>'+F(R('2'),'2')+'</td><td>'+F('1','2')+'</td><td>0</td></tr>'),
+    P('Extend to other quadrants using reference angles and ASTC (All / Sin / Tan / Cos positive by quadrant, going counterclockwise from QI).','small'));
+
+  const c2 = CARD('overflow-x',
+    H3('All six trig functions — domain &amp; range'),
+    TBL('<tr><th>f(θ)</th><th>Definition</th><th>Domain</th><th>Range</th></tr>'+
+     '<tr><td>sin θ</td><td>—</td><td>(−∞, ∞)</td><td>[−1, 1]</td></tr>'+
+     '<tr><td>cos θ</td><td>—</td><td>(−∞, ∞)</td><td>[−1, 1]</td></tr>'+
+     '<tr><td>tan θ</td><td>'+F('sin θ','cos θ')+'</td><td>θ ≠ '+F('π','2')+' + kπ</td><td>(−∞, ∞)</td></tr>'+
+     '<tr><td>csc θ</td><td>'+F('1','sin θ')+'</td><td>θ ≠ kπ</td><td>(−∞, −1] ∪ [1, ∞)</td></tr>'+
+     '<tr><td>sec θ</td><td>'+F('1','cos θ')+'</td><td>θ ≠ '+F('π','2')+' + kπ</td><td>(−∞, −1] ∪ [1, ∞)</td></tr>'+
+     '<tr><td>cot θ</td><td>'+F('cos θ','sin θ')+'</td><td>θ ≠ kπ</td><td>(−∞, ∞)</td></tr>'));
+
+  const c3 = CARD('overflow-x',
+    H3('Inverse trig — domains &amp; restricted ranges'),
+    TBL('<tr><th>Inverse</th><th>Domain</th><th>Range (restricted output)</th></tr>'+
+     '<tr><td>arcsin x</td><td>[−1, 1]</td><td>[−'+F('π','2')+', '+F('π','2')+']</td></tr>'+
+     '<tr><td>arccos x</td><td>[−1, 1]</td><td>[0, π]</td></tr>'+
+     '<tr><td>arctan x</td><td>(−∞, ∞)</td><td>(−'+F('π','2')+', '+F('π','2')+')</td></tr>'),
+    P('These ranges are the restricted domains of sin, cos, and tan that make them one-to-one before inverting.','small'));
+
+  const c4 = CARD('',
+    H3('Identities to know cold'),
+    FM('sin<sup>2</sup>θ + cos<sup>2</sup>θ = 1'),
+    FM('tan<sup>2</sup>θ + 1 = sec<sup>2</sup>θ'),
+    FM('1 + cot<sup>2</sup>θ = csc<sup>2</sup>θ'),
+    FM('sin(2θ) = 2 sin θ cos θ'),
+    FM('sin(−θ) = −sin θ &nbsp;(odd) &nbsp;&nbsp;&nbsp; cos(−θ) = cos θ &nbsp;(even)'),
+    P('The three Pythagorean identities all come from sin<sup>2</sup>θ + cos<sup>2</sup>θ = 1 by dividing through by cos<sup>2</sup>θ or sin<sup>2</sup>θ.','small'));
+
+  return sec('trig','3. Unit Circle &amp; Trig — Full Reference',c1,c2,c3,c4);
+}
+
+function sectionLimits(){
+  const cTable = CARD('',
+    TBL('<tr><th>Technique</th><th>Allowed?</th></tr>'+
+     '<tr><td>Factor and cancel</td><td class="allowed">✓ Yes</td></tr>'+
+     '<tr><td>Multiply by the conjugate</td><td class="allowed">✓ Yes</td></tr>'+
+     '<tr><td>Common denominator, then simplify</td><td class="allowed">✓ Yes</td></tr>'+
+     '<tr><td>Trig identities → sin(x)/x form</td><td class="allowed">✓ Yes</td></tr>'+
+     '<tr><td>Divide by highest power of x (limits at ∞)</td><td class="allowed">✓ Yes</td></tr>'+
+     '<tr><td>Squeeze Theorem</td><td class="allowed">✓ Yes</td></tr>'+
+     '<tr><td>L’Hôpital’s Rule</td><td class="banned">✗ Banned</td></tr>'+
+     '<tr><td>“Exponentials beat polynomials” reasoning</td><td class="banned">✗ Banned</td></tr>'));
+
+  const cChoose = CARD('',
+    H3('Which technique? Look at where x is headed'),
+    UL(['<strong>x → ±∞:</strong> divide every term by the highest power of x in the denominator.','<strong>x → a finite number, and substitution gives 0/0:</strong> factor and cancel the common factor, or use the conjugate if a root is involved.']),
+    P('Example: '+LM('t→1',F('t<sup>2</sup> + t − 2','t<sup>2</sup> − 1'))+' (t is going to 1, a finite number, and substitution gives 0/0).'),
+    FM('= '+LM('t→1',F('(t + 2)(t − 1)','(t − 1)(t + 1)'))+' = '+LM('t→1',F('t + 2','t + 1'))+' = '+F('3','2')));
+
+  const cCold = CARD('',
+    H3('The limit to know cold'),
+    FM(LM('x→0',F('sin x','x'),'1')),
+    P('Any limit that looks like sin(kx)/(kx) as x → 0 reduces to this by multiplying to build the matching argument in numerator and denominator. This is the standard move behind trig-limit problems, and it is proven with the Squeeze Theorem.','small'));
+
+  const cIROC = CARD('',
+    H3('The instantaneous-rate-of-change (difference quotient) limits'),
+    P('These are the two equivalent limit forms that define the slope of the tangent line, or the instantaneous rate of change, at a point. They come back constantly once derivatives start, so get fluent with the algebra (expanding, factoring, simplifying) now.','small'),
+    FM(LM('h→0',F('f(x + h) − f(x)','h'))),
+    FM(LM('x→a',F('f(x) − f(a)','x − a'))),
+    P('Both compute the same thing. The first slides a second point in by a small step h from x. The second slides a variable point x in toward the fixed point a. Both are 0/0 as written, so simplify (expand f(x + h), factor, cancel the h or the x − a) before plugging in.','small'));
+
+  const cConj = CARD('',
+    H3('The conjugate method (0/0 with a root)'),
+    P('When a limit gives 0/0 and a square root appears in the numerator or denominator, multiply top and bottom by the conjugate of the radical expression (flip the middle sign). The radical disappears by difference of squares, (a − b)(a + b) = a<sup>2</sup> − b<sup>2</sup>, which usually exposes a factor that cancels.'),
+    P('Example:','small'),
+    FM(LM('h→0',F(R('4 + h')+' − 2','h'))+' = '+LM('h→0',F('(4 + h) − 4','h('+R('4 + h')+' + 2)'))+' = '+LM('h→0',F('1',R('4 + h')+' + 2'))+' = '+F('1','4')),
+    P('The same idea works for an ∞ − ∞ limit involving a root: multiplying by the conjugate converts it to a ∞/∞ (or finite) form you can finish by dividing by the highest power of x.','small'));
+
+  const cForms = CARD('overflow-x',
+    H3('The indeterminate forms covered so far'),
+    P('Plugging in directly gives something that could evaluate to different things depending on the functions involved, so more algebra is needed before you can read off the answer.','small'),
+    TBL('<tr><th>Form</th><th>Try this (no L’Hôpital)</th><th>Typical result</th></tr>'+
+     '<tr><td>'+F('0','0')+'</td><td>Factor and cancel, or multiply by the conjugate</td><td>A finite number</td></tr>'+
+     '<tr><td>'+F('∞','∞')+'</td><td>Divide top and bottom by the highest power of x</td><td>0, a finite number, or ±∞</td></tr>'+
+     '<tr><td>∞ − ∞</td><td>Combine into a single fraction, or multiply by the conjugate if a root is present</td><td>A finite number, often after reducing to 0/0 or ∞/∞</td></tr>'+
+     '<tr><td>'+F('k','0')+', k ≠ 0</td><td>Not truly indeterminate. Check the sign of numerator and denominator separately from the left and right</td><td>+∞, −∞, or the two-sided limit does not exist</td></tr>'));
+
+  return sec('limits','4. Limit Techniques &amp; Indeterminate Forms (no L’Hôpital, no growth-rate arguments)',cTable,cChoose,cCold,cIROC,cConj,cForms);
+}
+
+function sectionSqueeze(){
+  const card = CARD('',
+    P('If g(x) ≤ f(x) ≤ h(x) for x near c, and '+LM('x→c','g(x)')+' = '+LM('x→c','h(x)')+' = L, then '+LM('x→c','f(x)')+' = L as well.'),
+    P('Name the theorem and confirm both outer limits before concluding.','small'));
+  return sec('squeeze','5. Squeeze (Sandwich) Theorem',card);
+}
+
+function sectionContinuity(){
+  const card = CARD('',
+    P('f is continuous at x = c if '+LM('x→c','f(x)','f(c)')+'. This quietly requires three things:'),
+    OL(['f(c) exists','The limit exists: '+LM('x→c<sup>−</sup>','f(x)')+' = '+LM('x→c<sup>+</sup>','f(x)'),'That common limit equals f(c)']),
+    P('Left-continuous at c: '+LM('x→c<sup>−</sup>','f(x)','f(c)')+'. Right-continuous at c: '+LM('x→c<sup>+</sup>','f(x)','f(c)')+'. Check both separately at domain-boundary points.','small'),
+    H3('Piecewise problems'),
+    P('At each boundary, set the left-hand expression equal to the right-hand expression (and to the function value) and solve for the unknown constants.','small'));
+  return sec('continuity','6. Continuity',card);
+}
+
+function sectionIVT(){
+  const card = CARD('',
+    P('If f is continuous on [a, b] and N is between f(a) and f(b), then there exists c ∈ (a, b) with f(c) = N.'),
+    H3('Full-credit answer structure'),
+    OL(['State the theorem by name','Verify continuity on [a, b] explicitly','Define f(x) if you are given an equation (e.g. cos θ = θ → f(θ) = cos θ − θ)','Compute f(a) and f(b), and show N is strictly between them','Conclude: “By the IVT, there exists c with f(c) = N”']),
+    H3('Related ideas they may ask you to define'),
+    UL(['Continuity test (the three-part definition)','Why the interval must be closed','Existence vs. uniqueness: the IVT gives at least one root, not exactly one','A sketch is not a proof']));
+  return sec('ivt','7. Intermediate Value Theorem',card);
+}
+
+function sectionEpsDelta(){
+  const card = CARD('',
+    P(LM('x→a','f(x)','L')+' means: for every ε &gt; 0 there exists δ &gt; 0 such that 0 &lt; |x − a| &lt; δ ⟹ |f(x) − L| &lt; ε.'),
+    OL(['Start from |f(x) − L| &lt; ε','Manipulate it into (constant)·|x − a| &lt; ε','Choose δ = '+F('ε','constant'),'Write the formal proof']),
+    P('For expressions like '+F('x<sup>2</sup> − 9','x − 3')+', simplify first (cancel, valid since x ≠ a), then apply the linear approach.','small'));
+
+  const ex = CARD('',
+    H3('Worked example'),
+    P('Claim: '+LM('x→2','(3x − 1)','5')+'.'),
+    P('Scratch work: |f(x) − L| = |(3x − 1) − 5| = |3x − 6| = 3|x − 2|. We want this &lt; ε, so we need |x − 2| &lt; '+F('ε','3')+'. That tells us to pick δ = '+F('ε','3')+'.'),
+    P('Formal proof: Let ε &gt; 0. Choose δ = '+F('ε','3')+'. Suppose 0 &lt; |x − 2| &lt; δ. Then:'),
+    FM('|(3x − 1) − 5| = |3x − 6| = 3|x − 2| &lt; 3δ = 3·'+F('ε','3')+' = ε.'),
+    P('So |f(x) − L| &lt; ε whenever 0 &lt; |x − 2| &lt; δ, which is exactly the definition. Therefore '+LM('x→2','(3x − 1)','5')+'. ∎'),
+    P('Note the two-part structure: scratch work (find δ in terms of ε) is not itself the proof. You still have to write the formal “let ε &gt; 0, choose δ = …, then show …” argument for credit.','small'));
+
+  return sec('epsdelta','8. Precise (ε–δ) Definition of a Limit',card,ex);
+}
+
+function sectionDerivs(){
+  const c1 = CARD('',
+    H3('Derivative at a point (3.1)'),
+    FM('f′(a) = '+LM('h→0',F('f(a + h) − f(a)','h'))+' = '+LM('x→a',F('f(x) − f(a)','x − a'))),
+    P('The expression '+F('f(a + h) − f(a)','h')+' is the <strong>difference quotient</strong> of f at a with increment h. The one limit has four readings: the slope of the graph at a, the slope of the tangent line at a, the rate of change of f with respect to x at a, and the derivative f′(a).'),
+    P('Tangent line at (a, f(a)): y − f(a) = f′(a)(x − a).','small'));
+
+  const c2 = CARD('',
+    H3('The derivative as a function (3.2)'),
+    FM('f′(x) = '+LM('h→0',F('f(x + h) − f(x)','h'))+' = '+LM('z→x',F('f(z) − f(x)','z − x'))),
+    P('f is <strong>differentiable</strong> at x if f′(x) exists; differentiation is the process of computing it.'),
+    P('Notation: f′(x), y′, '+F('dy','dx')+', '+F('df','dx')+', '+F('d','dx')+' f(x), D(f)(x). Value at a point: '+F('dy','dx')+' evaluated at x = a.'),
+    P('Known results: '+F('d','dx')+'('+F('1','x')+') = '+F('−1','x<sup>2</sup>')+', and '+F('d','dx')+R('x')+' = '+F('1','2'+R('x'))+' for x &gt; 0.'));
+
+  const c3 = CARD('',
+    H3('Differentiable on an interval'),
+    UL(['<strong>Open interval:</strong> a derivative exists at every point.','<strong>Closed interval [a, b]:</strong> differentiable inside, plus a right-hand derivative at a and a left-hand derivative at b.','<strong>Interior point:</strong> f′(c) exists exactly when both one-sided derivatives exist and are equal.']),
+    H3('Theorem: differentiable ⟹ continuous'),
+    P('If f is differentiable at c, then f is continuous at c. <strong>The converse is false:</strong> |x| is continuous at 0 but not differentiable there.'),
+    P('This is a classic True/False target. Be ready to state the theorem and give the counterexample.','small'));
+
+  const c4 = CARD('overflow-x',
+    H3('Where a derivative fails to exist'),
+    TBL('<tr><th>Failure</th><th>What happens</th><th>Example</th></tr>'+
+     '<tr><td>Corner</td><td>One-sided derivatives exist but differ</td><td>|x| at 0</td></tr>'+
+     '<tr><td>Cusp</td><td>Slopes go to +∞ on one side and −∞ on the other</td><td>x<sup>2/3</sup> at 0</td></tr>'+
+     '<tr><td>Vertical tangent</td><td>Slopes go to +∞ (or −∞) from both sides</td><td>'+R('x')+' at 0</td></tr>'+
+     '<tr><td>Discontinuity</td><td>Not continuous, so not differentiable</td><td>Jump or hole</td></tr>'+
+     '<tr><td>Wild oscillation</td><td>Slopes oscillate without settling</td><td>x sin('+F('1','x')+') at 0</td></tr>'));
+
+  const c5 = CARD('',
+    H3('Worked examples'),
+    P('<strong>Tangent to y = '+R('x')+' at x = 4.</strong> Slope:'),
+    FM(LM('x→4',F(R('x')+' − 2','x − 4'))+' = '+LM('x→4',F('(x − 4)','(x − 4)('+R('x')+' + 2)'))+' = '+LM('x→4',F('1',R('x')+' + 2'))+' = '+F('1','4')),
+    P('The point is (4, 2), so y − 2 = '+F('1','4')+'(x − 4), which gives y = '+F('x','4')+' + 1.'),
+    P('<strong>Differentiate f(x) = '+F('x','x − 1')+' by the definition.</strong>'),
+    FM('f′(x) = '+LM('h→0',F('1','h'))+'['+F('x + h','x + h − 1')+' − '+F('x','x − 1')+'] = '+LM('h→0',F('(x + h)(x − 1) − x(x + h − 1)','h(x + h − 1)(x − 1)'))),
+    FM('= '+LM('h→0',F('−h','h(x + h − 1)(x − 1)'))+' = '+LM('h→0',F('−1','(x + h − 1)(x − 1)'))+' = '+F('−1','(x − 1)<sup>2</sup>')));
+
+  return sec('derivs','9. Derivative Basics (Textbook 3.1–3.2)',c1,c2,c3,c4,c5);
+}
+
+/* ---------- Midterm 2 review (Textbook 3.1-3.9) ---------- */
+const DX = F('d','dx');
+
+function renderReview2(){
+  const c = el('div');
+  c.appendChild(backBtn());
+  c.appendChild(el('h1',{},'Midterm 2 Review'));
+  c.appendChild(el('div',{class:'tag'},'Derivatives — Textbook sections 3.1 to 3.9'));
+
+  const ids = ['m2def','m2rules','m2rates','m2trig','m2chain','m2implicit','m2log','m2invtrig'];
+  const labels = ['Definition','Rules','Rates','Trig','Chain Rule','Implicit','Logs & Inverses','Inverse Trig'];
+  const nav = el('nav');
+  ids.forEach((id,i)=> nav.appendChild(el('a',{href:'#'+id},labels[i])));
+  c.appendChild(nav);
+
+  c.appendChild(sectionM2Def());
+  c.appendChild(sectionM2Rules());
+  c.appendChild(sectionM2Rates());
+  c.appendChild(sectionM2Trig());
+  c.appendChild(sectionM2Chain());
+  c.appendChild(sectionM2Implicit());
+  c.appendChild(sectionM2Log());
+  c.appendChild(sectionM2InvTrig());
+
+  c.appendChild(el('button',{class:'quizcta',onclick:()=>{state.view='quizsetup';render();}},'Take the Practice Quiz →'));
+  return c;
+}
+
+function sectionM2Def(){
+  const c1 = CARD('',
+    H3('The derivative at a point and as a function (3.1–3.2)'),
+    FM('f′(a) = '+LM('h→0',F('f(a + h) − f(a)','h'))+' = '+LM('x→a',F('f(x) − f(a)','x − a'))),
+    FM('f′(x) = '+LM('h→0',F('f(x + h) − f(x)','h'))+' = '+LM('z→x',F('f(z) − f(x)','z − x'))),
+    P('The one limit has four readings: slope of the graph at a, slope of the tangent line at a, rate of change of f with respect to x at a, and the derivative f′(a). Tangent line: y − f(a) = f′(a)(x − a).'),
+    P('Notation: f′(x), y′, '+F('dy','dx')+', '+F('df','dx')+', '+DX+' f(x), D(f)(x). Value at a point: '+F('dy','dx')+' evaluated at x = a.','small'));
+
+  const c2 = CARD('',
+    H3('Differentiability'),
+    UL(['<strong>Differentiable ⟹ continuous.</strong> The converse is false: |x| is continuous at 0 but not differentiable there.','<strong>Interior point:</strong> f′(c) exists exactly when both one-sided derivatives exist and are equal.','<strong>Closed interval [a, b]:</strong> differentiable inside, plus a right-hand derivative at a and a left-hand derivative at b.']),
+    TBL('<tr><th>Failure</th><th>What happens</th><th>Example</th></tr>'+
+     '<tr><td>Corner</td><td>One-sided derivatives differ</td><td>|x| at 0</td></tr>'+
+     '<tr><td>Cusp</td><td>Slopes go to +∞ on one side, −∞ on the other</td><td>x<sup>2/3</sup> at 0</td></tr>'+
+     '<tr><td>Vertical tangent</td><td>Slopes go to +∞ (or −∞) from both sides</td><td>'+R('x')+' at 0</td></tr>'+
+     '<tr><td>Discontinuity</td><td>Not continuous, so not differentiable</td><td>Jump or hole</td></tr>'+
+     '<tr><td>Wild oscillation</td><td>Slopes never settle</td><td>x sin('+F('1','x')+') at 0</td></tr>'),
+    P('Known results: '+DX+'('+F('1','x')+') = '+F('−1','x<sup>2</sup>')+', and '+DX+' '+R('x')+' = '+F('1','2'+R('x'))+' for x &gt; 0. Tangent to y = '+R('x')+' at x = 4 is y = '+F('x','4')+' + 1.','small'));
+  c2.classList.add('overflow-x');
+  return sec('m2def','1. Definition &amp; Differentiability (3.1–3.2)',c1,c2);
+}
+
+function sectionM2Rules(){
+  const c1 = CARD('overflow-x',
+    TBL('<tr><th>Rule</th><th>Formula</th></tr>'+
+     '<tr><td>Constant</td><td>'+DX+'(c) = 0</td></tr>'+
+     '<tr><td>Power (any real n)</td><td>'+DX+' x<sup>n</sup> = n x<sup>n−1</sup></td></tr>'+
+     '<tr><td>Constant multiple</td><td>'+DX+'(cu) = c '+F('du','dx')+'</td></tr>'+
+     '<tr><td>Sum / difference</td><td>'+DX+'(u ± v) = '+F('du','dx')+' ± '+F('dv','dx')+'</td></tr>'+
+     '<tr><td>Exponential</td><td>'+DX+' e<sup>x</sup> = e<sup>x</sup></td></tr>'+
+     '<tr><td>Product</td><td>'+DX+'(uv) = u '+F('dv','dx')+' + v '+F('du','dx')+'</td></tr>'+
+     '<tr><td>Quotient</td><td>'+DX+'('+F('u','v')+') = '+F('v '+F('du','dx')+' − u '+F('dv','dx'),'v<sup>2</sup>')+'</td></tr>'),
+    P('For a<sup>x</sup> the derivative is a constant multiple of a<sup>x</sup>, and e is the base where that constant, '+LM('h→0',F('a<sup>h</sup> − 1','h'))+', equals 1.','small'));
+
+  const c2 = CARD('',
+    H3('Higher-order derivatives'),
+    P('y″ = '+F('d<sup>2</sup>y','dx<sup>2</sup>')+', y‴ = '+F('d<sup>3</sup>y','dx<sup>3</sup>')+', y<sup>(n)</sup> = '+F('d<sup>n</sup>y','dx<sup>n</sup>')+'. The second derivative y″ is the rate of change of the slope.'),
+    H3('Habits that save time'),
+    UL(['Simplify <em>before</em> differentiating when you can. For '+F('(x − 1)(x<sup>2</sup> − 2x)','x<sup>4</sup>')+', multiply out and split into powers instead of using the quotient rule.','Horizontal tangent means y′ = 0. For y = x<sup>4</sup> − 2x<sup>2</sup> + 2, y′ = 4x(x − 1)(x + 1), so the tangent is horizontal at x = 0, 1, −1.','The line through the origin tangent to y = e<sup>x</sup> is y = ex (tangent point at x = 1).','Rewrite roots and reciprocals as powers first: '+F('1','x<sup>4</sup>')+' = x<sup>−4</sup>, '+R('x')+' = x<sup>1/2</sup>.']));
+
+  return sec('m2rules','2. Differentiation Rules (3.3)',c1,c2);
+}
+
+function sectionM2Rates(){
+  const c1 = CARD('',
+    H3('Rate of change and motion on a line (3.4)'),
+    P('The instantaneous rate of change of f at x<sub>0</sub> is f′(x<sub>0</sub>). For position s = f(t) on a line:'),
+    TBL('<tr><th>Quantity</th><th>Formula</th></tr>'+
+     '<tr><td>Velocity</td><td>v = '+F('ds','dt')+'</td></tr>'+
+     '<tr><td>Speed</td><td>|v|</td></tr>'+
+     '<tr><td>Acceleration</td><td>a = '+F('dv','dt')+' = '+F('d<sup>2</sup>s','dt<sup>2</sup>')+'</td></tr>'+
+     '<tr><td>Jerk</td><td>j = '+F('da','dt')+' = '+F('d<sup>3</sup>s','dt<sup>3</sup>')+'</td></tr>'),
+    UL(['The sign of v gives direction.','<strong>Speeding up</strong> when v and a have the <em>same</em> sign; <strong>slowing down</strong> when they have <em>opposite</em> signs.','Free fall: s = '+F('1','2')+' g t<sup>2</sup>, with g = 32 ft/sec<sup>2</sup> or 9.8 m/sec<sup>2</sup>. The jerk in free fall is 0.']));
+
+  const c2 = CARD('',
+    H3('Worked example: rock blasted upward, s = 160t − 16t<sup>2</sup> (ft)'),
+    P('v = 160 − 32t. Maximum height is where v = 0: t = 5, so s(5) = 800 − 400 = 400 ft. It lands when s = 0: t(160 − 16t) = 0, so t = 10, and the velocity then is v(10) = 160 − 320 = −160 ft/sec (speed 160 ft/sec).'));
+
+  const c3 = CARD('',
+    H3('Other rates'),
+    UL(['<strong>Marginal cost / revenue / profit:</strong> '+F('dc','dx')+', '+F('dr','dx')+', and their difference. Each estimates the change from one more unit.','<strong>Sensitivity:</strong> where |f′(x)| is large, f is sensitive to small changes in x.','Area of a circle in terms of diameter: A = '+F('π','4')+' D<sup>2</sup>, so '+F('dA','dD')+' = '+F('πD','2')+'.']));
+
+  return sec('m2rates','3. Derivative as a Rate of Change (3.4)',c1,c2,c3);
+}
+
+function sectionM2Trig(){
+  const c1 = CARD('overflow-x',
+    P('All of these assume x is in <strong>radians</strong>.','small'),
+    TBL('<tr><th>Function</th><th>Derivative</th></tr>'+
+     '<tr><td>sin x</td><td>cos x</td></tr>'+
+     '<tr><td>cos x</td><td>−sin x</td></tr>'+
+     '<tr><td>tan x</td><td>sec<sup>2</sup>x</td></tr>'+
+     '<tr><td>cot x</td><td>−csc<sup>2</sup>x</td></tr>'+
+     '<tr><td>sec x</td><td>sec x tan x</td></tr>'+
+     '<tr><td>csc x</td><td>−csc x cot x</td></tr>'),
+    P('Pattern: every “co-” function has a negative derivative. The tan derivative comes from the quotient rule on '+F('sin x','cos x')+', then sin<sup>2</sup>x + cos<sup>2</sup>x = 1.','small'));
+
+  const c2 = CARD('',
+    H3('Simple harmonic motion'),
+    P('s = 5 cos t gives v = −5 sin t, a = −5 cos t, j = 5 sin t. Amplitude 5, period 2π. Speed is greatest at the rest position; the size of the acceleration is greatest at the endpoints and zero at the rest position.'),
+    H3('Examples'),
+    UL([DX+'(e<sup>x</sup> sin x) = e<sup>x</sup>(sin x + cos x)',DX+'('+F('sin x','x')+') = '+F('x cos x − sin x','x<sup>2</sup>'),DX+'('+F('cos x','1 − sin x')+') = '+F('1','1 − sin x')+' after the quotient rule, simplifying the numerator with sin<sup>2</sup>x + cos<sup>2</sup>x = 1','For y = sec x: y′ = sec x tan x and y″ = sec<sup>3</sup>x + sec x tan<sup>2</sup>x.']));
+
+  return sec('m2trig','4. Derivatives of Trig Functions (3.5)',c1,c2);
+}
+
+function sectionM2Chain(){
+  const c1 = CARD('',
+    FM('(f ∘ g)′(x) = f′(g(x)) · g′(x) &nbsp;&nbsp;&nbsp; '+F('dy','dx')+' = '+F('dy','du')+' · '+F('du','dx')),
+    P('“Outside-inside”: differentiate the outside function, leave the inside alone, then multiply by the derivative of the inside. With three or more layers, repeat from the outside in.'),
+    TBL('<tr><th>Form</th><th>Derivative</th></tr>'+
+     '<tr><td>u<sup>n</sup></td><td>n u<sup>n−1</sup> '+F('du','dx')+'</td></tr>'+
+     '<tr><td>e<sup>u</sup></td><td>e<sup>u</sup> '+F('du','dx')+'</td></tr>'+
+     '<tr><td>e<sup>kx</sup></td><td>k e<sup>kx</sup></td></tr>'+
+     '<tr><td>|x|, x ≠ 0</td><td>'+F('x','|x|')+' (from |x| = '+R('x<sup>2</sup>')+')</td></tr>'),
+    P('Radians matter: '+DX+' sin(x°) = '+F('π','180')+' cos(x°), which is why calculus uses radians.','small'));
+  c1.classList.add('overflow-x');
+
+  const c2 = CARD('',
+    H3('Worked examples'),
+    UL([DX+'(3x<sup>2</sup> + 1)<sup>2</sup> = 2(3x<sup>2</sup> + 1)(6x) = 12x(3x<sup>2</sup> + 1)',
+        DX+' cos(t<sup>2</sup> + 1) = −2t sin(t<sup>2</sup> + 1)',
+        DX+' e<sup>cos x</sup> = −sin x · e<sup>cos x</sup>',
+        DX+' sin<sup>5</sup>x = 5 sin<sup>4</sup>x cos x',
+        DX+'('+F('1','3x − 2')+') = '+F('−3','(3x − 2)<sup>2</sup>'),
+        DX+' e<sup>'+R('3x + 1')+'</sup> = '+F('3e<sup>'+R('3x + 1')+'</sup>','2'+R('3x + 1')),
+        DX+' tan(5 − sin 2t) = −2 cos(2t) sec<sup>2</sup>(5 − sin 2t)',
+        'For y = '+F('1','(1 − 2x)<sup>3</sup>')+', y′ = '+F('6','(1 − 2x)<sup>4</sup>')+' &gt; 0, so every tangent has positive slope.']));
+
+  return sec('m2chain','5. The Chain Rule (3.6)',c1,c2);
+}
+
+function sectionM2Implicit(){
+  const c1 = CARD('',
+    H3('Procedure for F(x, y) = 0'),
+    OL(['Differentiate both sides with respect to x, treating y as a differentiable function of x. So '+DX+' y<sup>2</sup> = 2y '+F('dy','dx')+', and a product like xy needs the product rule.','Collect all the '+F('dy','dx')+' terms on one side and solve for '+F('dy','dx')+'.']),
+    P('The answer usually contains both x and y. For y″, differentiate y′ again, then substitute your expression for y′ so the result is in x and y.','small'),
+    P('<strong>Normal line:</strong> perpendicular to the tangent at the point; its slope is the negative reciprocal of the tangent slope.'));
+
+  const c2 = CARD('',
+    H3('Worked examples'),
+    P('<strong>Circle x<sup>2</sup> + y<sup>2</sup> = 25.</strong> 2x + 2y y′ = 0, so '+F('dy','dx')+' = '+F('−x','y')+'. At (3, −4) the slope is '+F('−3','−4')+' = '+F('3','4')+'.'),
+    P('<strong>2x<sup>3</sup> − 3y<sup>2</sup> = 8.</strong> 6x<sup>2</sup> − 6y y′ = 0, so y′ = '+F('x<sup>2</sup>','y')+'. Then'),
+    FM('y″ = '+F('2x·y − x<sup>2</sup>·y′','y<sup>2</sup>')+' = '+F('2x','y')+' − '+F('x<sup>4</sup>','y<sup>3</sup>')),
+    P('<strong>Folium x<sup>3</sup> + y<sup>3</sup> − 9xy = 0 at (2, 4).</strong> 3x<sup>2</sup> + 3y<sup>2</sup>y′ − 9y − 9x y′ = 0, so'),
+    FM(F('dy','dx')+' = '+F('3y − x<sup>2</sup>','y<sup>2</sup> − 3x')+' = '+F('12 − 4','16 − 6')+' = '+F('4','5')),
+    P('Tangent: y = '+F('4','5')+'x + '+F('12','5')+'. The normal line has slope '+F('−5','4')+'.'));
+
+  return sec('m2implicit','6. Implicit Differentiation (3.7)',c1,c2);
+}
+
+function sectionM2Log(){
+  const c1 = CARD('',
+    H3('Derivative of an inverse (Theorem 3)'),
+    FM('(f<sup>−1</sup>)′(b) = '+F('1','f′(f<sup>−1</sup>(b))')),
+    P('Slopes of f and f<sup>−1</sup> at corresponding points are reciprocals. Requires f′ to exist and never be zero on the interval. Example: f(x) = x<sup>3</sup> − 2, b = 6. Since f(2) = 6, f<sup>−1</sup>(6) = 2, and f′(2) = 12, so (f<sup>−1</sup>)′(6) = '+F('1','12')+'.'));
+
+  const c2 = CARD('overflow-x',
+    H3('Logarithm and exponential derivatives (3.8)'),
+    TBL('<tr><th>Function</th><th>Derivative</th></tr>'+
+     '<tr><td>ln x (x &gt; 0)</td><td>'+F('1','x')+'</td></tr>'+
+     '<tr><td>ln u</td><td>'+F('1','u')+' '+F('du','dx')+'</td></tr>'+
+     '<tr><td>ln|x| (x ≠ 0)</td><td>'+F('1','x')+'</td></tr>'+
+     '<tr><td>a<sup>x</sup></td><td>a<sup>x</sup> ln a</td></tr>'+
+     '<tr><td>a<sup>u</sup></td><td>a<sup>u</sup> ln a '+F('du','dx')+'</td></tr>'+
+     '<tr><td>log<sub>a</sub> x</td><td>'+F('1','x ln a')+'</td></tr>'+
+     '<tr><td>log<sub>a</sub> u</td><td>'+F('1','u ln a')+' '+F('du','dx')+'</td></tr>'),
+    P(LM('h→0',F('a<sup>h</sup> − 1','h'),'ln a')+'. Also e = '+LM('x→0','(1 + x)<sup>'+F('1','x')+'</sup>')+'.','small'));
+
+  const c3 = CARD('',
+    H3('Logarithmic differentiation'),
+    OL(['Take ln of both sides.','Simplify with the log laws.','Differentiate implicitly.','Solve for '+F('dy','dx')+' and substitute y back.']),
+    P('Use it for messy products, quotients and powers, and when both the base and the exponent vary. It is also why x<sup>n</sup> = e<sup>n ln x</sup> gives '+DX+' x<sup>n</sup> = n x<sup>n−1</sup> for any real n.'),
+    FM(DX+' x<sup>x</sup> = x<sup>x</sup>(ln x + 1)'),
+    P('Example: y = '+F('(x<sup>2</sup> + 1)'+R('x + 3'),'x − 1')+'. Then ln y = ln(x<sup>2</sup> + 1) + '+F('1','2')+' ln(x + 3) − ln(x − 1), so'),
+    FM(F('y′','y')+' = '+F('2x','x<sup>2</sup> + 1')+' + '+F('1','2(x + 3)')+' − '+F('1','x − 1')+', &nbsp; y′ = y × (that)'));
+
+  return sec('m2log','7. Inverse Functions &amp; Logarithms (3.8)',c1,c2,c3);
+}
+
+function sectionM2InvTrig(){
+  const c1 = CARD('overflow-x',
+    H3('Definitions and ranges'),
+    TBL('<tr><th>Function</th><th>Range</th></tr>'+
+     '<tr><td>arcsin x</td><td>[−'+F('π','2')+', '+F('π','2')+']</td></tr>'+
+     '<tr><td>arccos x</td><td>[0, π]</td></tr>'+
+     '<tr><td>arctan x</td><td>(−'+F('π','2')+', '+F('π','2')+')</td></tr>'+
+     '<tr><td>arccot x</td><td>(0, π)</td></tr>'+
+     '<tr><td>arcsec x</td><td>[0, '+F('π','2')+') ∪ ('+F('π','2')+', π]</td></tr>'+
+     '<tr><td>arccsc x</td><td>[−'+F('π','2')+', 0) ∪ (0, '+F('π','2')+']</td></tr>'),
+    P('arctan is odd: arctan(−x) = −arctan x, with horizontal asymptotes y = ±'+F('π','2')+'. Also arcsec x = arccos('+F('1','x')+').','small'));
+
+  const c2 = CARD('overflow-x',
+    H3('Derivatives (3.9)'),
+    TBL('<tr><th>Function</th><th>Derivative</th><th>Condition</th></tr>'+
+     '<tr><td>arcsin u</td><td>'+F('1',R('1 − u<sup>2</sup>'))+' '+F('du','dx')+'</td><td>|u| &lt; 1</td></tr>'+
+     '<tr><td>arccos u</td><td>−'+F('1',R('1 − u<sup>2</sup>'))+' '+F('du','dx')+'</td><td>|u| &lt; 1</td></tr>'+
+     '<tr><td>arctan u</td><td>'+F('1','1 + u<sup>2</sup>')+' '+F('du','dx')+'</td><td>—</td></tr>'+
+     '<tr><td>arccot u</td><td>−'+F('1','1 + u<sup>2</sup>')+' '+F('du','dx')+'</td><td>—</td></tr>'+
+     '<tr><td>arcsec u</td><td>'+F('1','|u|'+R('u<sup>2</sup> − 1'))+' '+F('du','dx')+'</td><td>|u| &gt; 1</td></tr>'+
+     '<tr><td>arccsc u</td><td>−'+F('1','|u|'+R('u<sup>2</sup> − 1'))+' '+F('du','dx')+'</td><td>|u| &gt; 1</td></tr>'),
+    P('Cofunction identities: arccos x = '+F('π','2')+' − arcsin x, arccot x = '+F('π','2')+' − arctan x, arccsc x = '+F('π','2')+' − arcsec x. So each cofunction derivative is the negative of its partner’s. arcsin has vertical tangents at x = ±1, so it is not differentiable there.','small'));
+
+  const c3 = CARD('',
+    H3('Worked examples'),
+    UL([DX+' arcsin(x<sup>2</sup>) = '+F('2x',R('1 − x<sup>4</sup>')),
+        DX+'('+F('1','arctan x')+') = '+F('−1','(arctan x)<sup>2</sup>(1 + x<sup>2</sup>)'),
+        DX+' arcsec(5x<sup>4</sup>) = '+F('20x<sup>3</sup>','5x<sup>4</sup>'+R('25x<sup>8</sup> − 1'))+' = '+F('4','x'+R('25x<sup>8</sup> − 1'))]));
+
+  return sec('m2invtrig','8. Inverse Trigonometric Functions (3.9)',c1,c2,c3);
+}
+
+/* ---------- Quiz setup ---------- */
+function renderQuizSetup(){
+  const c = el('div');
+  c.appendChild(el('button',{class:'backbtn',onclick:()=>{state.view='review';render();}},'← Back to review'));
+  c.appendChild(el('h1',{},'Build Your Quiz'));
+  const EX = EXAMS[state.exam];
+  c.appendChild(el('div',{class:'tag'},EX.bank.length+' questions in the bank, easy to very hard. Pick topics and difficulty, then start. Difficulty is hidden during the quiz and shown on the final review.'));
+
+  const card = CARD('');
+  card.appendChild(H3('Topics'));
+  const topicRow = el('div');
+  EX.topics.forEach(t=>{
+    topicRow.appendChild(el('span',{class:'chip'+(state.selectedTopics.has(t)?' on':''),onclick:function(){
+      if(state.selectedTopics.has(t)) state.selectedTopics.delete(t); else state.selectedTopics.add(t);
+      render(true);
+    }},t));
+  });
+  card.appendChild(topicRow);
+
+  card.appendChild(H3('Difficulty'));
+  const diffRow = el('div');
+  Object.keys(DIFF_LABEL).forEach(key=>{
+    diffRow.appendChild(el('span',{class:'chip'+(state.selectedDiffs.has(key)?' on':''),onclick:function(){
+      if(state.selectedDiffs.has(key)) state.selectedDiffs.delete(key); else state.selectedDiffs.add(key);
+      render(true);
+    }},DIFF_LABEL[key]));
+  });
+  card.appendChild(diffRow);
+
+  const pool = EX.bank.filter(q=>state.selectedTopics.has(q.topic) && state.selectedDiffs.has(q.diff));
+  card.appendChild(P(pool.length+' question(s) match your filters.','small'));
+  const startBtn = el('button',pool.length===0?{class:'primarybtn',disabled:''}:{class:'primarybtn',onclick:function(){startQuiz(pool);}},
+    pool.length===0 ? 'No questions match — adjust filters' : 'Start Quiz ('+pool.length+' questions)');
+  const row = el('div',{class:'btnrow'}); row.appendChild(startBtn);
+  card.appendChild(row);
+  c.appendChild(card);
+  return c;
+}
+
+function startQuiz(pool){
+  state.quizQuestions = [...pool].sort(()=>Math.random()-0.5).map(q=>{
+    const order = q.opts.map((_,i)=>i).sort(()=>Math.random()-0.5);
+    return Object.assign({},q,{opts:order.map(i=>q.opts[i]),correct:order.indexOf(q.correct),sel:null,checked:false});
+  });
+  state.quizIdx = 0;
+  state.view = 'quiz';
+  render();
+}
+
+/* ---------- Quiz ---------- */
+function renderQuiz(){
+  const c = el('div');
+  const qs = state.quizQuestions;
+  const total = qs.length;
+  const q = qs[state.quizIdx];
+
+  c.appendChild(el('button',{class:'backbtn',onclick:()=>{state.view='quizsetup';render();}},'← Quit quiz'));
+  const answered = qs.filter(x=>x.sel!==null).length;
+  c.appendChild(P('Question '+(state.quizIdx+1)+' of '+total+' &nbsp;·&nbsp; '+answered+' answered','small sans'));
+
+  const grid = el('div',{class:'navgrid'});
+  qs.forEach((x,i)=>{
+    let cls = 'navbtn';
+    if(x.checked) cls += (x.sel===x.correct ? ' ok' : ' no');
+    else if(x.sel!==null) cls += ' sel';
+    if(i===state.quizIdx) cls += ' cur';
+    grid.appendChild(el('button',{class:cls,onclick:()=>{state.quizIdx=i;render(true);}},String(i+1)));
+  });
+  c.appendChild(grid);
+
+  c.appendChild(P('<strong>'+q.topic+'</strong>','small sans'));
+  c.appendChild(el('div',{class:'qtext',html:q.q}));
+
+  const optWrap = el('div');
+  q.opts.forEach((opt,i)=>{
+    let cls = 'qopt';
+    if(q.checked){
+      cls += ' locked';
+      if(i===q.correct) cls += ' correct';
+      else if(i===q.sel) cls += ' wrong';
+    } else if(q.sel===i){
+      cls += ' picked';
+    }
+    optWrap.appendChild(el('button',{class:cls,html:opt,onclick:function(){
+      if(q.checked) return;
+      q.sel = i;
+      render(true);
+    }}));
+  });
+  c.appendChild(optWrap);
+
+  if(q.checked){
+    const ok = q.sel===q.correct;
+    const box = CARD('');
+    box.appendChild(el('p',{html:'<strong>'+(ok?'Correct. ':'Not quite. ')+'</strong>'+q.exp}));
+    c.appendChild(box);
+  }
+
+  const row = el('div',{class:'btnrow'});
+  row.appendChild(el('button',state.quizIdx===0?{class:'secbtn',disabled:''}:{class:'secbtn',onclick:()=>{state.quizIdx--;render(true);}},'← Previous'));
+  const canCheck = q.sel!==null && !q.checked;
+  row.appendChild(el('button',canCheck?{class:'primarybtn',onclick:()=>{q.checked=true;render(true);}}:{class:'primarybtn',disabled:''},q.checked?'Checked':'Check Answer'));
+  row.appendChild(el('button',state.quizIdx===total-1?{class:'secbtn',disabled:''}:{class:'secbtn',onclick:()=>{state.quizIdx++;render(true);}},'Next →'));
+  c.appendChild(row);
+
+  const fin = el('div',{class:'btnrow'});
+  fin.appendChild(el('button',{class:'secbtn',onclick:()=>{state.view='results';render();}},'Finish and see review'));
+  c.appendChild(fin);
+  return c;
+}
+
+/* ---------- Results / final review ---------- */
+function renderResults(){
+  const c = el('div');
+  const qs = state.quizQuestions;
+  const total = qs.length;
+  const correct = qs.filter(x=>x.sel===x.correct).length;
+  const unanswered = qs.filter(x=>x.sel===null).length;
+  const pct = Math.round(100*correct/total);
+
+  c.appendChild(el('h1',{},'Quiz Review'));
+  const sum = CARD('');
+  sum.appendChild(el('p',{style:'font-size:1.3rem;margin:0.2rem 0;'},'Score: '+correct+' / '+total+' ('+pct+'%)'));
+  const msg = pct>=85 ? 'Strong work. You are in good shape for the midterm.' : pct>=60 ? 'Solid, but review the topics you missed before the exam.' : 'Worth another pass through the review sections before you try this again.';
+  sum.appendChild(P(msg+(unanswered?' '+unanswered+' unanswered question(s) count as incorrect.':''),'small'));
+  c.appendChild(sum);
+
+  const row = el('div',{class:'btnrow'});
+  row.appendChild(el('button',{class:'secbtn',onclick:()=>{state.view='quiz';render();}},'← Back to quiz'));
+  row.appendChild(el('button',{class:'primarybtn',onclick:()=>{state.view='quizsetup';render();}},'Build a New Quiz'));
+  row.appendChild(el('button',{class:'secbtn',onclick:()=>{state.view='review';render();}},'Back to review'));
+  c.appendChild(row);
+
+  c.appendChild(el('h2',{style:'margin-top:1.8rem;'},'Question-by-question'));
+  qs.forEach((q,i)=>{
+    const ok = q.sel===q.correct;
+    const card = CARD('revq '+(ok?'ok':'no'));
+    card.appendChild(el('div',{class:'revhead',html:'Question '+(i+1)+' &nbsp;·&nbsp; '+q.topic+' &nbsp;·&nbsp; <span class="diffbadge d-'+q.diff+'">'+DIFF_LABEL[q.diff]+'</span>'}));
+    card.appendChild(el('div',{class:'qtext',html:q.q}));
+    card.appendChild(el('div',{class:'ans '+(ok?'good':'bad'),html:'Your answer: '+(q.sel===null?'Not answered':q.opts[q.sel])}));
+    if(!ok) card.appendChild(el('div',{class:'ans good',html:'Correct answer: '+q.opts[q.correct]}));
+    card.appendChild(el('p',{class:'small',html:q.exp}));
+    c.appendChild(card);
+  });
+  return c;
+}
+
+render();
+</script>
+</body>
+</html>
+
+</body></html>
